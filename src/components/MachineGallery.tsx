@@ -294,7 +294,7 @@ const products = [
     id: 12,
     name: 'CULTIVADORA DE BRAZOS RIGIDOS',
     description: 'Sembradoras de precisión para una distribución óptima de semillas. Control preciso de profundidad y espaciamiento. Perfecta para diversos tipos de semillas y condiciones de siembra.',
-    image: 'https://scontent.flim2-4.fna.fbcdn.net/v/t39.30808-6/489808642_122102443232831227_1850769251382032774_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFwvjRYs89JILbcIQSVFvU_JB30lDrhqvckHfSUOuGq90UTLm_Tu73RGRc5I9YTQY5f86V4TOKS1eD9Be5pftyG&_nc_ohc=bl5lm14X7TIQ7kNvwF_p0qB&_nc_oc=AdnYsKu1foQy4Tye2X8ZibEFKxT1FGfAOnuJXQXPf0RaICnpyXxRv6dzx9GTvR7S-n8jJNMsTNvIukGiVDvQeyiV&_nc_zt=23&_nc_ht=scontent.flim2-4.fna&_nc_gid=afw1RSAfLSuaOZ6HyMyv8Q&oh=00_AfGL9tLwPoD7FRiigCL9irTLTmHah91U4SjNCH0qv5RgFw&oe=67FA61A7',
+    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489534776_122102595290831227_7670621577770739444_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=v8wv0ISaOPEQ7kNvwH6BUtI&_nc_oc=Adkhq1JFxrMtMMiLaI6EHBxy54lyRIkdtttoZpXnfkb_D_KSrzD0n2LTNqbm8kfASCMyxZFvkPrZMPRtlvGpwGha&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=dD2gVrp73p4u6nD63JpB5A&oh=00_AfGlyul9G0gnt9Ta8liMFOxgP73F-SDWwTNMNcekyTTgfQ&oe=67FAA385',
     price: 12500,
     specifications: [
       { label: 'Material', value: 'Acero y polímeros' },
