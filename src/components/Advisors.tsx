@@ -6,7 +6,7 @@ const advisors = [
     id: 1,
     name: 'Karla Albites',
     position: 'Asistente Administrativo , contable y ventas',
-    image: 'https://scontent.flim2-2.fna.fbcdn.net/v/t1.6435-9/36504850_1746462018769059_3838715436996755456_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeGkinGIeflGVeZir2sXUewf5zwtIDi3SQrnPC0gOLdJChkZUbQCrP-z6TSxpAFdrHtMba8xFsd6GFckgCWytFXh&_nc_ohc=PHlnWAg7tFQQ7kNvgEc6u2c&_nc_oc=AdkiO54aIS2mSMLNvSLig2q6mum6zADs0_NAbmBmNI2Iz5rRed7msKB7J0wUpVUqrwWTYADiXt6QpSYLBR6H6IRp&_nc_zt=23&_nc_ht=scontent.flim2-2.fna&_nc_gid=rsW1PbjTiG6UR_rLiRBrUg&oh=00_AYFdTHi6iIv2C1a44JJPbU9H119b-DvLUlrUrGMrtbByUw&oe=680C3440',
+    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t1.6435-9/199483639_4032706436811261_4971965865721243258_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=W02BmXFMXjUQ7kNvwG5Sqaq&_nc_oc=Adlj5uo7LfeV7C8YLbIBWE9UjuMnuiX31Hrj4syjt_rmowh8FA1Cz2s8FAsvmpL2GmndDx6XNvudv2u-yZ2DiZzf&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=cSmyGtyehBsR8KQBzxl1dg&oh=00_AfFDSJ7NlA6DpSH28QdZLq_dPd5P5JWUKI1srZbbB4qyTg&oe=681C4546',
     whatsapp: '958840599',
     specialties: ['Ventas Corporativas', 'Asesoria de Productos Agricolas', 'Servicio al Cliente']
   },
@@ -14,7 +14,7 @@ const advisors = [
     id: 2,
     name: 'Veronica Meneses',
     position: 'Administradora',
-    image: 'https://scontent.flim2-5.fna.fbcdn.net/v/t1.6435-9/49612756_1975355469167145_3073386607408054272_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeGHHPIWB9ZedhMYYygrVjHis_M2AeNgFWaz8zYB42AVZqe7PNfckhgG74z1ZXl5kB7mO_i4DMg1JRVvakQQLjLI&_nc_ohc=rqScLARprGUQ7kNvgFzEl_t&_nc_oc=Adl7tPpKlUCa0W7wxXuDIKRMTE5jFs9J2BMKwOJPqfL6XmC8TXuOBpQPHLg3k4yT_LGtC3RJ6ROp2nI0dJW42LGv&_nc_zt=23&_nc_ht=scontent.flim2-5.fna&_nc_gid=R6adXHbM15Tu-SZF-eGZkw&oh=00_AYFRkoXGppHcU_rSTLAL6K0oU9TeH_K7eiDmdvQ5xyk9Tg&oe=680C0BC8',
+    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/490025759_122102566928831227_6172123913805551504_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=H4N3JsfDiZgQ7kNvwHr94Ub&_nc_oc=Admw1cCeCkiLv0qOWWtakl-8PqvLOeNdqrS6x54Plu5ON4TrODtx56zfVJntNYASJfAFbFOou_WCozzAvRdy0tUl&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=IefAEslxXNH88gRbV2Aj_A&oh=00_AfH0aldh8fRGU5FdDpH4fV2DBQ-uJn1tn6LnG37u_NrUHg&oe=67FAA30F',
     whatsapp: '963792905',
     specialties: ['Maquinarias Agricolas', 'Proyectos Especiales', 'Servicio al Cliente']
   }
