@@ -8,7 +8,7 @@ const products = [
     id: 1,
     name: 'Subsoldador de 02 Brazos',
     description: 'Arados de disco resistentes para trabajo pesado, ideales para preparación de suelos. Fabricados con materiales de alta calidad y diseñados para una larga vida útil. Perfectos para todo tipo de terrenos y condiciones de trabajo.',
-    image: 'https://implementosagricolasfsi.com/images/Catalogo/subsolador_02brazo.jpg#joomlaImage://local-images/Catalogo/subsolador_02brazo.jpg?width=768&height=556',
+    image: 'https://scontent.flim2-2.fna.fbcdn.net/v/t39.30808-6/487377468_122102381798831227_6113909114682004611_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGcOJCm6EDuGBBlg2AnjUhXcaIih3riqghxoiKHeuKqCIAMM0-CHlDTVJmNpDj0zey6dlIMG-bVWr9KYGo1JFtl&_nc_ohc=yew0s9NVWsAQ7kNvwGEoapx&_nc_oc=Admi9wmlLR73RGN5M9uti8AUytC4jZwj2EK-5-qYXS4EZF1URw1O6mOT85281WZnfjpHxGjGvAvaAm9ahNOSHWhX&_nc_zt=23&_nc_ht=scontent.flim2-2.fna&_nc_gid=nbDDg4sqwE273AUqn3DC3A&oh=00_AfG_p-2L9a2iAuHHYH7YJ4ipE1WTot6CGAJaicrONTA4Yw&oe=67FA3E29',
     price: 12500,
     specifications: [
       { label: 'Material', value: 'Acero reforzado' },
