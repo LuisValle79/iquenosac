@@ -3,19 +3,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    url: 'https://thumbs.dreamstime.com/b/el-grupo-de-almacenes-f%C3%A1bricas-empleados-e-ingenieros-plantas-industriales-equipo-trabajadores-ingeniero-en-f%C3%A1brica-producci%C3%B3n-254018176.jpg',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489436319_122102566976831227_6977553803374826236_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ELAf6-Hx8SoQ7kNvwEpnwHM&_nc_oc=Adkwif-I5i9ziRJoNTfpTmOKyPq9gOkctZwb0xIlkPCSrpSjd_gdaRlVvg3kasFPU0pmD8zLW21QsU9QasVWrO6v&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=yipd4Bf4Z6LsTs1QJiMSIA&oh=00_AfEjftWIjs7dg7SoH-Mgr7nbiAo6Hi7oxxzT4Zy9gyzboA&oe=67FA9B04',
     title: 'Implementos Agrícolas de Alta Calidad'
   },
   {
-    url: 'https://agrolink.com.ar/wp-content/uploads/2020/08/maquinaria-agr%C3%ADcola-scaled.jpg',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488928785_122102567072831227_6074464536442912843_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=BLjp62YAmyoQ7kNvwExCkr7&_nc_oc=AdkL7WcNvZXW7Ot_SJYQBUnzhodRf4WBoohO_UMMiU8NtILVJ4FD_xamtTXHymVsn_Sdb6tL24pdd1r-5pdtrx-j&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=5wWOZv0axDHqivL50FeiRQ&oh=00_AfErVtT4O7usiRIoecyh_tsRp12oKbAugGgd470dA_SZHQ&oe=67FAACA3',
     title: 'Maquinaria de Última Generación'
   },
   {
-    url: 'https://th.bing.com/th/id/R.ab67800874782372cdaae6a6360deee3?rik=h60NITsFuftNmw&pid=ImgRaw&r=0',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488701882_122102567036831227_5810811552030735017_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L2FeMdxkAtQQ7kNvwFE4s-b&_nc_oc=Adl8eNMIDmv0FSd7v0TmELHILJAtr7dIDYOjevj6X_tFKl0eRwO2_rhp4-gALYD83psRqlO3NFxaEamNhDWzEtJ9&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=FuuTgkNCM3j9CunDzY-g8Q&oh=00_AfGbR9gEha8RL57cpBFTa348K3C1rErdnR3rxx7X-lutzw&oe=67FA87BD',
     title: 'Soluciones para el Campo'
   },
   {
-    url: 'https://bloglatam.jacto.com/wp-content/uploads/2023/01/operador-de-maquinaria-agricola.jpg',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489809519_122102566970831227_6636887066957775758_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=P1IiEJW5Yj4Q7kNvwGGOg5R&_nc_oc=Adl5VyckH5e9s1z6czuRb0ulGXsjTlru3cSFMhj5MI__3NRZbEE2t9YkU1C6hoorkBAXoalIUExPNd2WG_NdMs3-&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=SKUwTOppbjfhbifZ8y8TvA&oh=00_AfFk5ro-ltSBTuk5udXuLQrxp1juaor6_2skeu1NWsebxw&oe=67FA9442',
     title: 'Experiencia y Calidad'
   }
 ];
