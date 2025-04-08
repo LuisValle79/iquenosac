@@ -6,9 +6,9 @@ import { FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
 const products = [
   {
     id: 1,
-    name: 'Arados de Disco',
+    name: 'Subsoldador de 02 Brazos',
     description: 'Arados de disco resistentes para trabajo pesado, ideales para preparación de suelos. Fabricados con materiales de alta calidad y diseñados para una larga vida útil. Perfectos para todo tipo de terrenos y condiciones de trabajo.',
-    image: 'https://www.deere.com/assets/images/region-3/products/tillage-equipment/disks/arado_3745_estudio_large_1b5ab86460ef31a698e8e93006198b3d250b477b.jpg',
+    image: 'https://implementosagricolasfsi.com/images/Catalogo/subsolador_02brazo.jpg#joomlaImage://local-images/Catalogo/subsolador_02brazo.jpg?width=768&height=556',
     price: 12500,
     specifications: [
       { label: 'Material', value: 'Acero reforzado' },
