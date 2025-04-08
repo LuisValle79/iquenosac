@@ -320,32 +320,6 @@ const products = [
     id: 13,
     name: 'CULTIVADORA DE BRAZOS RIGIDOS',
     description: 'Sembradoras de precisión para una distribución óptima de semillas. Control preciso de profundidad y espaciamiento. Perfecta para diversos tipos de semillas y condiciones de siembra.',
-    image: 'https://implementosagricolasfsi.com/images/Catalogo/SURCADORA-DE-BRAZOS-RIGIDOS.jpg#joomlaImage://local-images/Catalogo/SURCADORA-DE-BRAZOS-RIGIDOS.jpg?width=768&height=556',
-    price: 12500,
-    specifications: [
-      { label: 'Material', value: 'Acero y polímeros' },
-      { label: 'Capacidad', value: '40 litros' },
-      { label: 'Hileras', value: '4 hileras' },
-      { label: 'Sistema', value: 'Neumático' }
-    ],
-    features: [
-      'Monitor de siembra',
-      'Dosificador de precisión',
-      'Tolva de gran capacidad',
-      'Marcadores de hilera',
-      'Sistema de fertilización'
-    ],
-    dimensions: {
-      width: 480,
-      height: 260,
-      depth: 200,
-      weight: 580
-    }
-  },
-   {
-    id: 14,
-    name: 'CULTIVADORA DE BRAZOS RIGIDOS',
-    description: 'Sembradoras de precisión para una distribución óptima de semillas. Control preciso de profundidad y espaciamiento. Perfecta para diversos tipos de semillas y condiciones de siembra.',
     image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/487506288_122102593160831227_2272955648380345151_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=updmzyw993cQ7kNvwGxjzra&_nc_oc=AdmSuhZvs5NCGKAa1IUw2TWAOCLtQQlM_xJE0OdahjCqy_ft0ShAsRBnju2v3WTomKPsMvMKhSZFXL9H9YSJu1kl&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=noZoy5izhQF1Jdf5hVROTg&oh=00_AfFUjF23VuGloMc-qXL7xS-Rvbkgd8DrsgKxrsCjFmxy8Q&oe=67FA9818',
     price: 12500,
     specifications: [
@@ -369,7 +343,7 @@ const products = [
     }
   },
   {
-    id: 15,
+    id: 14,
     name: 'PICADORA ESTACIONARIA DE CHALA DE 2TN A 4TN',
     description: 'Sistemas de fumigación de alta precisión para protección de cultivos. Control electrónico de flujo y presión. Ideal para la aplicación precisa de agroquímicos y fertilizantes líquidos.',
     image: 'https://scontent.flim2-4.fna.fbcdn.net/v/t39.30808-6/487946241_122102444330831227_3783527917550589000_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE5ZGeXTbCHzvmsBHBy2q9QRQ7oN-5yWBZFDug37nJYFt2BveLirfDCGb4sP-BqEZTZ8l6w--0eQCKtWj3FyjXX&_nc_ohc=HM3Bqv8oqNUQ7kNvwH1OtEk&_nc_oc=AdkaVZvYXbghpxwe1sGjuDJr5hUXmv9fbMtUFboaGrd4hy8yMis1S8FBRO0t73dYTJAlrHb6I-HfxmiqF_T66zof&_nc_zt=23&_nc_ht=scontent.flim2-4.fna&_nc_gid=XrbrWsm4K-dyAHcytyqxlA&oh=00_AfFoSbnFmpD7qJmtJ5QmgkeG4oZ6gfv4xOZRXYByFa-83Q&oe=67FA93C4',
