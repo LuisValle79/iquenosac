@@ -3,19 +3,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489436319_122102566976831227_6977553803374826236_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ELAf6-Hx8SoQ7kNvwEpnwHM&_nc_oc=Adkwif-I5i9ziRJoNTfpTmOKyPq9gOkctZwb0xIlkPCSrpSjd_gdaRlVvg3kasFPU0pmD8zLW21QsU9QasVWrO6v&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=yipd4Bf4Z6LsTs1QJiMSIA&oh=00_AfEjftWIjs7dg7SoH-Mgr7nbiAo6Hi7oxxzT4Zy9gyzboA&oe=67FA9B04',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488701882_122102567036831227_5810811552030735017_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=618840U2CSoQ7kNvwH9r9ji&_nc_oc=AdkeE-15u55bcmRjJL2Por0sbiIGMaq0pA4LGeTR4u8QmiYWRWJyAjc9mCZLouTbJhoycLtIaQLgRxPTyjnct6jl&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=2AokxqK5cgAXgNYFNpH-Rg&oh=00_AfFoxYnFvuwP7ZEgXqKNau-VaLpfJRvXlizQjMjHOH-eTA&oe=6814AD7D',
     title: 'Implementos Agrícolas de Alta Calidad'
   },
   {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488928785_122102567072831227_6074464536442912843_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=BLjp62YAmyoQ7kNvwExCkr7&_nc_oc=AdkL7WcNvZXW7Ot_SJYQBUnzhodRf4WBoohO_UMMiU8NtILVJ4FD_xamtTXHymVsn_Sdb6tL24pdd1r-5pdtrx-j&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=5wWOZv0axDHqivL50FeiRQ&oh=00_AfErVtT4O7usiRIoecyh_tsRp12oKbAugGgd470dA_SZHQ&oe=67FAACA3',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489809519_122102566970831227_6636887066957775758_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=aeF-Jbq08g8Q7kNvwEu_Kd7&_nc_oc=AdkowZGBsEiA825qcTWuThJO2xpcxVuoOHn5Qdy6Uare8PXocCLytrH_ytNUmyUHddBIxjY1efIzn0p3VwnLEzZd&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=oICWjUQ8mEh5Bqd6U2zq_Q&oh=00_AfEXw_AHJXxsO1DIFS2jtg4cdM3pTIR1N5EA7aQb9nq-ew&oe=681481C2',
     title: 'Maquinaria de Última Generación'
   },
   {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488701882_122102567036831227_5810811552030735017_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L2FeMdxkAtQQ7kNvwFE4s-b&_nc_oc=Adl8eNMIDmv0FSd7v0TmELHILJAtr7dIDYOjevj6X_tFKl0eRwO2_rhp4-gALYD83psRqlO3NFxaEamNhDWzEtJ9&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=FuuTgkNCM3j9CunDzY-g8Q&oh=00_AfGbR9gEha8RL57cpBFTa348K3C1rErdnR3rxx7X-lutzw&oe=67FA87BD',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489436319_122102566976831227_6977553803374826236_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KFzFdUBueesQ7kNvwGdLByv&_nc_oc=AdklqEKcJlgKvZ-QC8tJBOCDXW8vYWlcjTQhn0IPChpv4mTkVF9sILQHo7MrsO5kO27WLiagsY49t5TbJ18IqWsG&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=khDw8Wv5TfO6F13_PCaa2g&oh=00_AfHGI-jc_VdybztaJ1oDXbkxiXo1JG5HY-VZGNBlYSLYvg&oe=68148884',
     title: 'Soluciones para el Campo'
   },
   {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489809519_122102566970831227_6636887066957775758_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=P1IiEJW5Yj4Q7kNvwGGOg5R&_nc_oc=Adl5VyckH5e9s1z6czuRb0ulGXsjTlru3cSFMhj5MI__3NRZbEE2t9YkU1C6hoorkBAXoalIUExPNd2WG_NdMs3-&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=SKUwTOppbjfhbifZ8y8TvA&oh=00_AfFk5ro-ltSBTuk5udXuLQrxp1juaor6_2skeu1NWsebxw&oe=67FA9442',
+    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488928785_122102567072831227_6074464536442912843_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hrqXi5Gdc8oQ7kNvwEPDUbW&_nc_oc=AdkxFQGWjv1bNjtdMrPIucOVeG0seKyzgUXWs2GG7K8IATa3wSwBnYoWy8yYUliV1u0ZISTecENTBaV_yR3EgyQf&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=st4ypOBr5L4bTIzqdPY5bw&oh=00_AfHnjvEZQwbzqNxjjNQFFbZIM01MsUimiuQfzGBa_ejDhQ&oe=68149A23',
     title: 'Experiencia y Calidad'
   }
 ];
@@ -51,7 +51,7 @@ const HeroCarousel: React.FC = () => {
   };
 
   return (
-    <div className="relative h-[90vh] overflow-hidden">
+    <div className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden">
       {/* Imágenes del carrusel */}
       <div className="relative h-full">
         {images.map((image, index) => (
@@ -62,45 +62,51 @@ const HeroCarousel: React.FC = () => {
             }`}
           >
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${image.url})` }}
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105"
+              style={{ 
+                backgroundImage: `url(${image.url})`,
+                backgroundPosition: 'center center',
+                transform: 'scale(1.02)'
+              }}
             />
-            <div className="absolute inset-0 bg-black bg-opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60" />
           </div>
         ))}
       </div>
 
       {/* Contenido */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-4 w-full">
-          <div className="text-white max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-opacity duration-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="text-white max-w-2xl mx-auto text-center sm:text-left sm:mx-0 relative z-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 transition-opacity duration-500">
               {images[currentIndex].title}
             </h1>
-            <p className="text-xl md:text-2xl mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
               Especialistas en maquinaria agrícola y soluciones para el campo desde hace más de 20 años
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center max-w-[280px] sm:max-w-none mx-auto sm:mx-0">
               <a 
                 href="#contacto"
-                className="bg-machinery-200 text-tractor-400 px-8 py-3 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center"
+                className="w-full sm:w-auto bg-machinery-200 text-tractor-400 px-4 sm:px-6 py-3 sm:py-2.5 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
               >
-                Contáctanos
-                <ChevronRight className="ml-2 h-5 w-5" />
+                <span>Contáctanos</span>
+                <ChevronRight className="ml-2 h-4 w-4" />
               </a>
               <a 
                 href="#maquinarias"
-                className="bg-tractor-200 text-white px-8 py-3 rounded-lg font-semibold hover:bg-tractor-300 transition duration-300 inline-flex items-center"
+                className="w-full sm:w-auto bg-tractor-200 text-white px-4 sm:px-6 py-3 sm:py-2.5 rounded-lg font-semibold hover:bg-tractor-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
               >
-                Ver Productos
-                <ChevronRight className="ml-2 h-5 w-5" />
+                <span>Ver Productos</span>
+                <ChevronRight className="ml-2 h-4 w-4" />
               </a>
               <a 
                 href="https://www.implementosagricolasfsi.com/images/catalogo.pdf"
-                className="bg-machinery-200 text-tractor-400 px-8 py-3 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-machinery-200 text-tractor-400 px-4 sm:px-6 py-3 sm:py-2.5 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
               >
-                Ver Catálogo de Productos
-                <ChevronRight className="ml-2 h-5 w-5" />
+                <span>Abrir Catálogo</span>
+                <ChevronRight className="ml-2 h-4 w-4" />
               </a>
             </div>
           </div>
@@ -111,9 +117,9 @@ const HeroCarousel: React.FC = () => {
       <div className="absolute inset-y-0 left-0 flex items-center">
         <button
           onClick={goToPrevious}
-          className="bg-black bg-opacity-50 text-white p-2 m-4 rounded-full hover:bg-opacity-75 transition-all"
+          className="bg-black bg-opacity-50 text-white p-1 sm:p-2 m-2 sm:m-4 rounded-full hover:bg-opacity-75 transition-all"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
         </button>
       </div>
       <div className="absolute inset-y-0 right-0 flex items-center">
@@ -145,4 +151,4 @@ const HeroCarousel: React.FC = () => {
   );
 };
 
-export default HeroCarousel; 
+export default HeroCarousel;

@@ -12,9 +12,9 @@ const advisors = [
   },
   {
     id: 2,
-    name: 'Veronica Meneses',
+    name: 'Veronica Caico',
     position: 'Administradora',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/490025759_122102566928831227_6172123913805551504_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=H4N3JsfDiZgQ7kNvwHr94Ub&_nc_oc=Admw1cCeCkiLv0qOWWtakl-8PqvLOeNdqrS6x54Plu5ON4TrODtx56zfVJntNYASJfAFbFOou_WCozzAvRdy0tUl&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=IefAEslxXNH88gRbV2Aj_A&oh=00_AfH0aldh8fRGU5FdDpH4fV2DBQ-uJn1tn6LnG37u_NrUHg&oe=67FAA30F',
+    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/490025759_122102566928831227_6172123913805551504_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=gPyPbcwSUbEQ7kNvwHdARMC&_nc_oc=AdkGSZym7jvinPT-EvFho13sKEFSyQSS2Osg3XiqQytOFIqKiFZT0DZJBe7n_EVnRBOb_hIqBI2tim72VosmQd79&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=a47NCT6DMhNKQa93zgrikA&oh=00_AfGIUaHEVtAoksygBwlSoZ2pH4Rp-ygXpZT3w4TR15QPFg&oe=6814908F',
     whatsapp: '963792905',
     specialties: ['Maquinarias Agricolas', 'Proyectos Especiales', 'Servicio al Cliente']
   }
@@ -26,29 +26,34 @@ const Advisors: React.FC = () => {
   };
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[1400px] mx-auto px-4 py-8">
       {advisors.map(advisor => (
-        <div key={advisor.id} className="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-          <div className="relative">
+        <div 
+          key={advisor.id} 
+          className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl flex flex-col md:flex-row h-full group cursor-pointer"
+        >
+          {/* Image Section */}
+          <div className="relative md:w-2/5 overflow-hidden">
             <img
               src={advisor.image}
               alt={advisor.name}
-              className="w-full h-64 object-cover"
+              className="w-full h-[350px] object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
-              <h3 className="text-white text-2xl font-bold">{advisor.name}</h3>
-              <p className="text-gray-200">{advisor.position}</p>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transform transition-all duration-300 group-hover:translate-y-0 translate-y-0">
+              <h3 className="text-white text-xl font-bold">{advisor.name}</h3>
+              <p className="text-gray-200 text-sm transform transition-all duration-300 group-hover:translate-y-0">{advisor.position}</p>
             </div>
           </div>
-          
-          <div className="p-6">
-            <div className="mb-4">
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Especialidades:</h4>
-              <div className="flex flex-wrap gap-2">
+
+          {/* Content Section */}
+          <div className="md:w-3/5 p-6 flex flex-col justify-between bg-gradient-to-br from-white to-gray-50 transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-gray-50 group-hover:to-white">
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-3">Especialidades:</h4>
+              <div className="flex flex-wrap gap-2 mb-6">
                 {advisor.specialties.map((specialty, index) => (
                   <span
                     key={index}
-                    className="bg-indigo-100 text-indigo-800 text-sm px-3 py-1 rounded-full"
+                    className="bg-indigo-100 text-indigo-800 text-sm px-3 py-1.5 rounded-full font-medium transition-all duration-300 hover:bg-indigo-200 hover:scale-105 hover:shadow-md"
                   >
                     {specialty}
                   </span>
@@ -58,9 +63,9 @@ const Advisors: React.FC = () => {
             
             <button
               onClick={() => handleWhatsAppClick(advisor.whatsapp)}
-              className="w-full bg-green-500 text-white py-3 px-4 rounded-lg hover:bg-green-600 transition duration-300 flex items-center justify-center"
+              className="w-full bg-green-500 text-white py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center text-base font-medium shadow-md hover:shadow-xl hover:bg-green-600 hover:scale-[1.02] active:scale-95"
             >
-              <MessageCircle className="h-5 w-5 mr-2" />
+              <MessageCircle className="h-5 w-5 mr-2 transition-transform group-hover:rotate-12" />
               Contactar por WhatsApp
             </button>
           </div>

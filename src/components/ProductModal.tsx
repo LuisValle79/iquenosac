@@ -1,160 +1,105 @@
 import React from 'react';
-import { X, Download, ChevronRight } from 'lucide-react';
-import { jsPDF } from 'jspdf';
+import { X, Download, Check } from 'lucide-react';
 
 interface ProductModalProps {
-  product: {
-    name: string;
-    description: string;
-    image: string;
-    price: number;
-    specifications: {
-      label: string;
-      value: string;
-    }[];
-    features: string[];
-    dimensions: {
-      width: number;
-      height: number;
-      depth: number;
-      weight: number;
-    };
-  } | null;
+  product: any;
   onClose: () => void;
 }
 
 const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
-  if (!product) return null;
-
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    
-    // Añadir título
-    doc.setFontSize(20);
-    doc.text(product.name, 20, 20);
-    
-    // Añadir imagen
-    doc.addImage(product.image, 'JPEG', 20, 30, 170, 100);
-    
-    // Añadir descripción
-    doc.setFontSize(12);
-    doc.text('Descripción:', 20, 140);
-    doc.setFontSize(10);
-    const descriptionLines = doc.splitTextToSize(product.description, 170);
-    doc.text(descriptionLines, 20, 150);
-    
-    // Añadir especificaciones
-    doc.setFontSize(12);
-    doc.text('Especificaciones:', 20, 170);
-    doc.setFontSize(10);
-    product.specifications.forEach((spec, index) => {
-      doc.text(`${spec.label}: ${spec.value}`, 20, 180 + (index * 10));
-    });
-    
-    // Añadir precio
-    doc.setFontSize(12);
-    doc.text(`Precio: S/. ${product.price.toLocaleString()}`, 20, 240);
-    
-    // Guardar PDF
-    doc.save(`${product.name.toLowerCase().replace(/ /g, '_')}.pdf`);
-  };
-
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  const handleDownloadFicha = () => {
+    // Abre el PDF directamente en la página específica y configura la impresión
+    const pdfWindow = window.open(
+      `https://www.implementosagricolasfsi.com/images/catalogo.pdf#page=${product.pdfPage}`,
+      '_blank'
+    );
+    
+    if (pdfWindow) {
+      pdfWindow.onload = () => {
+        pdfWindow.document.title = `Ficha Técnica - ${product.name}`;
+        pdfWindow.print();
+      };
+    }
+  };
+
   return (
     <div 
-      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-lg w-full max-w-4xl">
-        <div className="p-6">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-tractor-300">{product.name}</h2>
-            <button
-              onClick={onClose}
-              className="text-gray-500 hover:text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
+      <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+        <button 
+          onClick={onClose}
+          className="absolute right-4 top-4 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full p-2 transition-colors z-10"
+        >
+          <X className="h-6 w-6" />
+        </button>
 
-          {/* Content */}
+        <div className="p-6">
+          <h2 className="text-2xl font-bold text-gray-800 pr-12 mb-6">{product.name}</h2>
+
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Imagen */}
-            <div>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-[300px] object-cover rounded-lg shadow-lg"
-              />
-              <div className="mt-4 flex justify-between items-center">
-                <span className="text-2xl font-bold text-tractor-200">
-                  S/. {product.price.toLocaleString()}
-                </span>
-                <button
-                  onClick={generatePDF}
-                  className="bg-tractor-200 text-white px-4 py-2 rounded-lg flex items-center hover:bg-tractor-300 transition duration-300"
-                >
-                  <Download className="h-5 w-5 mr-2" />
-                  Descargar Ficha
-                </button>
+            <div className="space-y-4">
+              <div className="relative group">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-[400px] rounded-lg object-cover shadow-lg transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
               </div>
+              <button
+                onClick={handleDownloadFicha}
+                className="w-full bg-green-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-700 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-xl"
+              >
+                <Download className="h-5 w-5" />
+                <span>Descargar Ficha Técnica</span>
+              </button>
             </div>
 
-            {/* Detalles */}
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold mb-2">Descripción</h3>
-                <p className="text-gray-600">{product.description}</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Especificaciones</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {product.specifications.map((spec, index) => (
-                    <div key={index} className="bg-gray-50 p-3 rounded-lg">
-                      <span className="text-sm text-gray-500">{spec.label}</span>
-                      <p className="font-medium text-gray-900">{spec.value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Características</h3>
+                <h3 className="text-lg font-semibold mb-2">Características:</h3>
                 <ul className="space-y-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-center text-gray-600">
-                      <ChevronRight className="h-4 w-4 text-tractor-200 mr-2" />
-                      {feature}
+                  {product.features.map((feature: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2">Dimensiones</h3>
+                <h3 className="text-lg font-semibold mb-2">Especificaciones:</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {product.specifications.map((spec: any, index: number) => (
+                    <div key={index} className="bg-gray-50 p-3 rounded-lg">
+                      <div className="text-sm text-gray-600">{spec.label}</div>
+                      <div className="font-medium">{spec.value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Dimensiones:</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-50 p-3 rounded-lg">
-                    <span className="text-sm text-gray-500">Ancho</span>
-                    <p className="font-medium text-gray-900">{product.dimensions.width} cm</p>
+                    <div className="text-sm text-gray-600">Dimensiones (AxAxL)</div>
+                    <div className="font-medium">
+                      {product.dimensions.width}cm x {product.dimensions.height}cm x {product.dimensions.depth}cm
+                    </div>
                   </div>
                   <div className="bg-gray-50 p-3 rounded-lg">
-                    <span className="text-sm text-gray-500">Alto</span>
-                    <p className="font-medium text-gray-900">{product.dimensions.height} cm</p>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <span className="text-sm text-gray-500">Profundidad</span>
-                    <p className="font-medium text-gray-900">{product.dimensions.depth} cm</p>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <span className="text-sm text-gray-500">Peso</span>
-                    <p className="font-medium text-gray-900">{product.dimensions.weight} kg</p>
+                    <div className="text-sm text-gray-600">Peso</div>
+                    <div className="font-medium">{product.dimensions.weight} kg</div>
                   </div>
                 </div>
               </div>
@@ -166,4 +111,4 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   );
 };
 
-export default ProductModal; 
+export default ProductModal;

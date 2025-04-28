@@ -4,24 +4,24 @@ import { Play, X } from 'lucide-react';
 const videos = [
   {
     id: 1,
-    title: 'Proceso de Fabricación',
-    description: 'Testimonio de cliente sobre nuestro proceso de fabricación de maquinaria industrial.',
-    thumbnail: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    videoUrl: 'https://www.youtube.com/embed/your-video-id-1'
+    title: 'Encamadora Integral - FSI Implementos agricolas El Iqueño SAC.- Perú',
+    description: 'Encamadora Integral para formar camas agrícolas uniformes en cultivos como papa y camote. Optimiza la preparación del terreno, mejorando la siembra y el riego. Fabricada por FSI Implementos Agrícolas El Iqueño SAC – calidad y eficiencia peruana.',
+    thumbnail: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488051985_122103155348831227_6711556660959515627_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=G--GCPLQlbsQ7kNvwFAk7vF&_nc_oc=AdmHCWrUlEpFfrO6iqKu4vuJkRQbiXgpd3XZJndCYyfSlfNFvcVrcZZrdOdMFSaFoOqbx1qoUwtKh-dVKRUvGqx2&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=7YuFpq89D3ib3_XQ8BZW-Q&oh=00_AfH-cAWJVR-rEYrBHLYNedS4UqrztyYqLAiTSB_L9r7suw&oe=68148D0E',
+    videoUrl: 'https://www.youtube.com/embed/Df9nYUyeqKQ'
   },
   {
     id: 2,
-    title: 'Calidad en Servicio',
-    description: 'Cliente compartiendo su experiencia con nuestro servicio de mantenimiento.',
-    thumbnail: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    videoUrl: 'https://www.youtube.com/embed/your-video-id-2'
+    title: 'Picadora / Desbrozadora de hoja de papa y/o Camote con cadena (nueva) - FSI SAC-EL IQUEÑO - PERÚ',
+    description: 'Ideal para la limpieza de cultivo, elimina residuos vegetales con rapidez y presicion, mejorando el manejo de terreno. Diseñada por FSI SAC – EL IQUEÑO, calidad peruana para el trabajo agrícola eficiente.',
+    thumbnail: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/487506282_122103155252831227_5352684416294867912_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xmhXtHiOshgQ7kNvwHEqYTU&_nc_oc=AdkS3Jgd2y8aQGn5oi2tiwdbuxvRQRhoyjyuV95Wm9pqynebUciS7JpxuE4dVWNV08lrRZpPzPMow_3ugL8te4Lk&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=j1NE4BUoWFyF0YVoMUEjzQ&oh=00_AfFemXYjJaNu9skoPPSMLtSMoltiSp7n8YJcISWkfuSU_A&oe=6814928E',
+    videoUrl: 'https://www.youtube.com/embed/bEw1sz8uqBA'
   },
   {
     id: 3,
-    title: 'Innovación Tecnológica',
-    description: 'Demostración de nuestras últimas innovaciones en maquinaria industrial.',
-    thumbnail: 'https://images.unsplash.com/photo-1565034946487-077786996e27?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    videoUrl: 'https://www.youtube.com/embed/your-video-id-3'
+    title: 'Cosechadora de papa y camote - FSI SAC EL IQUEÑO- PERÚ',
+    description: 'Cosechadora especializada para papa y camote, ideal para agilizar tu cosecha. Extrae los tubérculos sin dañarlos y los separa eficientemente del suelo. Aumenta tu productividad y reduce el trabajo manual en el campo.',
+    thumbnail: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/487446927_122103155084831227_7733712358589050231_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=cKHCdqtIGn8Q7kNvwHUXHdj&_nc_oc=AdneJ1mZHGl6w8-25dRi3a6wrpPj74GObsKeUu58wGW-eXZWuUmf38tH0IQI1HWdUypv8hYzWz6dKucCmjBuEnWn&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=AIcHB5_PQZZKGoAiWm3XBw&oh=00_AfFfV1U5ioEJZWc0o9-BBkMjt4CML88GVYczgX9Ypk9E3A&oe=68148C6F',
+    videoUrl: 'https://www.youtube.com/embed/TQa2QJd5V6Q'
   }
 ];
 
