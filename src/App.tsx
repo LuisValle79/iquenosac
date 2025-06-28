@@ -8,6 +8,7 @@ import VideoGallery from './components/VideoGallery';
 import Advisors from './components/Advisors';
 import AboutUs from './components/AboutUs';
 import Map from './components/Map';
+import Clients from './components/Clients';
 import Logo from './components/Logo';
 import HeroCarousel from './components/HeroCarousel';
 import image1 from './assets/portada1.jpg';
@@ -266,6 +267,9 @@ agrícola para tractor.
           <Advisors />
         </div>
       </section>
+
+      {/* Clients Section */}
+      <Clients />
 
       {/* Contact Section */}
       <section id="contacto" className="py-20 bg-tractor-50">
