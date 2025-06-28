@@ -1,12 +1,14 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
+import asesora from '../assets/asesora1.jpg';
+import asesora2 from '../assets/veronica.png';
 
 const advisors = [
   {
     id: 1,
     name: 'Karla Albites',
     position: 'Asistente Administrativo , contable y ventas',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t1.6435-9/199483639_4032706436811261_4971965865721243258_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=W02BmXFMXjUQ7kNvwG5Sqaq&_nc_oc=Adlj5uo7LfeV7C8YLbIBWE9UjuMnuiX31Hrj4syjt_rmowh8FA1Cz2s8FAsvmpL2GmndDx6XNvudv2u-yZ2DiZzf&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=cSmyGtyehBsR8KQBzxl1dg&oh=00_AfFDSJ7NlA6DpSH28QdZLq_dPd5P5JWUKI1srZbbB4qyTg&oe=681C4546',
+    image: asesora,
     whatsapp: '958840599',
     specialties: ['Ventas Corporativas', 'Asesoria de Productos Agricolas', 'Servicio al Cliente']
   },
@@ -14,7 +16,7 @@ const advisors = [
     id: 2,
     name: 'Veronica Caico',
     position: 'Administradora',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/490025759_122102566928831227_6172123913805551504_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=gPyPbcwSUbEQ7kNvwHdARMC&_nc_oc=AdkGSZym7jvinPT-EvFho13sKEFSyQSS2Osg3XiqQytOFIqKiFZT0DZJBe7n_EVnRBOb_hIqBI2tim72VosmQd79&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=a47NCT6DMhNKQa93zgrikA&oh=00_AfGIUaHEVtAoksygBwlSoZ2pH4Rp-ygXpZT3w4TR15QPFg&oe=6814908F',
+    image: asesora2,
     whatsapp: '963792905',
     specialties: ['Maquinarias Agricolas', 'Proyectos Especiales', 'Servicio al Cliente']
   }

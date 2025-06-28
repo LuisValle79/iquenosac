@@ -2,6 +2,28 @@ import React, { useState } from 'react';
 import { Eye, Download } from 'lucide-react';
 import { FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
 import ProductModal from './ProductModal';
+import imagen1 from '../assets/desgranadora_maiz.jpg';
+import imagen2 from '../assets/encamadora_integral.jpg';
+import imagen3 from '../assets/hoyadora_agricola.jpg';
+import imagen4 from '../assets/lampon_agricola.jpg';
+import imagen5 from '../assets/molino_cascaracoco_600x600.jpg';
+import imagen6 from '../assets/picadoraestacionaria_chala4tn.jpg';
+import imagen7 from '../assets/subsolador_01brazo.jpg';
+import imagen8 from '../assets/subsolador_02brazo.jpg';
+import imagen9 from '../assets/abonadora_hidraulica.jpg';
+import imagen10 from '../assets/cosechadora_cebolla.jpg';
+import imagen11 from '../assets/Desbrozadoradehojapapayocamote.jpg';
+import imagen12 from '../assets/cultivadora_brazosrigidos6.jpg';
+import imagen13 from '../assets/MINICULTIVADORA-DE-BRAZOS-RIGIDOS.jpg';
+import imagen14 from '../assets/picadoraestacionaria_chala2tna4tn.jpg';
+
+
+
+
+
+
+
+
 
 const products = [
   {
@@ -9,7 +31,7 @@ const products = [
     name: 'DESGRANADORA DE MAIZ DURO',
     pdfPage: 15, // Número de página en el PDF
     description: 'Desgranadora de maíz duro de alta eficiencia y durabilidad',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489013356_122103155324831227_2354194773628880683_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dQdsrYowygEQ7kNvwG8ZD36&_nc_oc=AdnHVrKrpFVnxE9TNbbUL87AjEk_vISoH-oWBqPBpn46rSnqGE_ZntwXdtEMfNkDH0xwvkyS7lm5PMJmH7VPRNz-&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=VGndueRVgImPGrbWZwYQbg&oh=00_AfGH7Nqj5_IavSpWzeBEXq78f8GisFPMr_zztex_-yNkZg&oe=6814AE1E',
+    image: imagen1,
     specifications: [
       { label: 'Material', value: 'Acero estructural' },
       { label: 'Producción', value: '14 a 16Tn/hr' },
@@ -37,7 +59,7 @@ const products = [
     name: 'ENCAMADORA INTEGRAL',
     pdfPage: 19,
     description: 'Formador de cama, tira cinta de riego y coloca el plástico para el encamado, todo en un solo paso',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488051985_122103155348831227_6711556660959515627_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=G--GCPLQlbsQ7kNvwFAk7vF&_nc_oc=AdmHCWrUlEpFfrO6iqKu4vuJkRQbiXgpd3XZJndCYyfSlfNFvcVrcZZrdOdMFSaFoOqbx1qoUwtKh-dVKRUvGqx2&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=7WBuKFdHxtdz8X6pX2xVWQ&oh=00_AfHBU47xa5dwv5YQf04UHdvMoxuC7HlvuLx0AYlnFWENPg&oe=68148D0E',
+    image: imagen2,
     specifications: [
       { label: 'Material', value: 'Acero estructural y tubular' },
       { label: 'Potencia requerida', value: '100 HP' },
@@ -68,7 +90,7 @@ const products = [
     name: 'HOYADORA AGRICOLA',
     pdfPage: 13,
     description: 'Hoyadora de enganche de tres puntos accionada con chasis en acero tubular rectangular',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489324627_122103155384831227_7514139557586655521_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HbD7mU1_Kl0Q7kNvwHUMHxz&_nc_oc=AdlaYZYN1DL9RlfYist7dRfuyTo72Pmp-1RRZeysC8Q2TpjUthIPMqC89SAufSVylfvukKAd8_iJuaaHus1zxbv9&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=Wv_DHbtyxKLzVJsfbVr8SQ&oh=00_AfHO_1pNas6SkVfRiPtdX-admbtriPtmihkCVt87XFQCrA&oe=68148EC8',
+    image: imagen3,
     specifications: [
       { label: 'Modelo', value: 'Acero tubular rectangular' },
       { label: 'Broca', value: 'Ø6" A Ø8"' },
@@ -95,7 +117,7 @@ const products = [
     name: 'LAMPON AGRICOLA DE LEVANTE',
     pdfPage: 17,
     description: 'Fabricado en plancha y perfiles de acero estructural',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489010635_122103155492831227_6350700261603390397_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6DNSujwmy6sQ7kNvwGSY4Eq&_nc_oc=AdklQHabpxINS7gLeL-VCsOwQE5T8yY-A2K9BoI4t1Vsnu0ERPyMeeDbLneBIiY1XkU3Xq_iHGR7rYunKQCAtV2D&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=gflih7ivIlTMs8KGN7-o9w&oh=00_AfF-XuPajHCRQdpOvbD5C93ZCh3ei2gEu7VcaxDLlcDEyw&oe=68147FBC',
+    image: imagen4,
     specifications: [
       { label: 'Material', value: 'Acero estructural' },
       { label: 'Potencia requerida', value: '100 HP' },
@@ -122,7 +144,7 @@ const products = [
     name: 'MOLINO O PULVERIZADOR DE CASCARA DE COCO',
     pdfPage: 16,
     description: 'Trituradora y Molienda de coco seco',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489242408_122103155696831227_1148421799491206191_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zVTe-PbpxboQ7kNvwFLOuRP&_nc_oc=AdnXfP7XLdIPQ4wtmtS1aAyTy9cpSpGvYBfCQXWMTfWH7Ug6hbLWHIlivlgNkbXAgpUXrM9S9Hh0Fjn5XMzNDaQQ&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=9BOCo2maPYtrLcob9l03xw&oh=00_AfHxIU93QRIuNwBkUuiRDFsH97XWM4fS8Jyy0t6NkXz2kg&oe=68147F72',
+    image: imagen5,
     specifications: [
       { label: 'Material', value: 'Chasis en acero estructural' },
       { label: 'Capacidad', value: '500 kg/h' },
@@ -157,7 +179,7 @@ const products = [
     name: 'PICADORA ESTACIONARIA DE CHALA',
     pdfPage: 12,
     description: 'Picadora ideal para cortar caña, pasto, malezas, y todo tipo de forrajes',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/487946241_122103155756831227_5681658864394553289_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=z7ogutbXa-0Q7kNvwHYUOU_&_nc_oc=AdnsxJ2v_qS25kJPLMx3HX9kQC7sNuGWrNwL5m6qErl6sBg6A91BgqMaz0BHsAeh_GpEiF5rqC1XkoPd6P-hbWEU&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=ZITahsuj8zILXGH0tM33VA&oh=00_AfF4W37VnP1sDtU4l_Vds_EDGOqo2jJwL-ZwysemQuSaQg&oe=68149E36',
+    image: imagen6,
     specifications: [
       { label: 'Modelo', value: 'Chasis en acero estructural' },
       { label: 'Número de cuchillas', value: '3' },
@@ -185,7 +207,7 @@ const products = [
     name: 'SUBSOLADOR DE 01 BRAZO',
     pdfPage: 9,
     description: 'Chasis tubular en perfil rectangular',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/487409737_122103155810831227_7809231410058834053_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=JbTvB6HGUV8Q7kNvwHCpidm&_nc_oc=AdkToCqCjYvu3TML4uRdO6E-tYaixN-Xbgk4fRIsJTUAotpKD-zTW7RRCujtOAp1ujxodZnB-kAPGrxALFB2pB7T&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=BI67wOrn9c0v5todsqu6oQ&oh=00_AfG8CIAbdYZo8NKD2QIY8a6pS_pF-WGYNxI0Dy1bWMDJoQ&oe=68149125',
+    image: imagen7,
     specifications: [
       { label: 'Modelo', value: 'SUBFSI 1' },
       { label: 'Potencia requerida', value: '50 a 60 HP' },
@@ -211,7 +233,7 @@ const products = [
     name: 'SUBSOLADOR DE 02 BRAZOS',
     pdfPage: 9,
     description: 'Chasis tubular en perfil rectangular',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489918841_122103155852831227_737699414038752538_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=jjcY7biv9GEQ7kNvwEiBQGE&_nc_oc=AdngoLUj3skkKfoN0xsijT-S-k0Y3LutirtieRFbtkrMXGSXVaaAvEo_jB8lucNCqefsen4ln4DKGSC9fdQ22S4j&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=YtPP2dTWJVtM-kAPs4jLng&oh=00_AfHNT-vDDIKhlpNSDlyExRewig7RM7-CWzv8ulT6yypFMg&oe=6814899B',
+    image: imagen8,
     specifications: [
       { label: 'Modelo', value: 'SUBFSI 2' },
       { label: 'Potencia requerida', value: '80 a 90 HP' },
@@ -238,7 +260,7 @@ const products = [
     name: 'ABONADORA HIDRAULICA',
     pdfPage: 18,
     description: 'Maquina totalmente desmontable, de fácil regulación, distanciamiento y altura de los brazos',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489056889_122103154946831227_7944924792639532019_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xgVNAbW55WIQ7kNvwFztKZZ&_nc_oc=AdmssxDcnyIF2aLYDTAl4kEI5zYHcqqO2WXB1UHVqSbvATqgIVyTjrYykzArSElMVJsVfnggKPbiJpwZ-A6FRH-7&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=UD3i_TyKJMMMMOToZtLh1Q&oh=00_AfEY2nd7rrFwNnk5lb38yklALEWuC4IdzbXklZ-qsmT0fw&oe=6814933B',
+    image: imagen9,
     specifications: [
       { label: 'Material', value: 'Chasis en aceros estructural' },
       { label: 'Potencia requerida', value: '100 HP' },
@@ -271,7 +293,7 @@ const products = [
     name: 'COSECHADORA DE CEBOLLA',
     pdfPage: 14,
     description: 'Implemento especializado para la cosecha eficiente de cebollas',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/487339104_122103154940831227_4575428801035848165_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=WcyGlrGKKQ4Q7kNvwE5MU9t&_nc_oc=AdmpolaDWrIXr6bn7Jg0OQ6J6RwlJduowibum6-9osnSkE92mS0X_H9GNb29Ue8VbfgzZTN-AItYT2jL8i4W0s0Q&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=rjUJVU7dwlT5VXmlPQye0A&oh=00_AfFBE-UJMqdi7k2b_CzEz3bUydAZz5pI0FT7teadlRKtdg&oe=6814974D',
+    image: imagen10,
     specifications: [
       { label: 'Material', value: 'Chasis fabricado en acero estructural reforzado' },
       { label: 'Potencia requerida', value: '70 HP' },
@@ -302,7 +324,7 @@ const products = [
     name: 'DESBROZADORA DE HOJA DE PAPA Y/O CAMOTE CON BOMBIN HIDRAULICO',
     pdfPage: 11,
     description: 'Accionada por la tomafuerza del tractor, ideal para limpieza del terreno antes de la cosecha de papa/camote',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/487506282_122103155252831227_5352684416294867912_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xmhXtHiOshgQ7kNvwHEqYTU&_nc_oc=AdkS3Jgd2y8aQGn5oi2tiwdbuxvRQRhoyjyuV95Wm9pqynebUciS7JpxuE4dVWNV08lrRZpPzPMow_3ugL8te4Lk&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=mgakUQV--bppgu66iS54sQ&oh=00_AfEKml0TVgYqY8sJuT-_w4oJ_oT-OCwrFtlLzYqZxQE30w&oe=6814928E',
+    image: imagen11,
     specifications: [
       { label: 'Modelo', value: 'PPBFSI 1' },
       { label: 'Número de martillos', value: '34' },
@@ -330,7 +352,7 @@ const products = [
     name: 'CULTIVADORA DE BRAZOS RIGIDOS',
     pdfPage: 6,
     description: 'Barra cuadrada acerada',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/490197169_122103155180831227_529548861521303807_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=U5tLI7LgOVMQ7kNvwFG-kYo&_nc_oc=AdnYTkCY2k_i9Hz5jWUqTF8oqbq9s5GejCbcTsSTvJwtHcbq5hc6cnQ3v1zISxjNuBvSdIxcg0p1j1QZNVNYYf-3&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=AO57sk7jgjVFVXQp1K84oQ&oh=00_AfGHIPvOWEBw8s3fJfW-olo9JI0oMfSjr6Fv-427VNqruA&oe=68147D18',
+    image: imagen12,
     specifications: [
       { label: 'Modelo', value: 'CULFSI 1' },
       { label: 'N° de brazos rectos', value: '6' },
@@ -361,7 +383,7 @@ const products = [
     name: 'MINICULTIVADORA DE BRAZOS RIGIDOS',
     pdfPage: 7,
     description: 'Barra cuadrada',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489452628_122103155570831227_603104918005495207_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fBCfJ738x6AQ7kNvwGcFf_N&_nc_oc=Adl6auh9tLhoU8IFNf8XQrGE_KEEXbFWVNRLxY74IUzCNPsTM8w2aCMO6LWWfn_JH3LJ1u9NZOoGyKxpFgSGUUg0&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=wI1_MTd7AWYsqUPXaMkVBg&oh=00_AfGmZwhRP--iZXj011PQIy-fSR0PydBT0iudXI8bVhok0Q&oe=68149070',
+    image: imagen13,
     specifications: [
       { label: 'Modelo', value: 'SURFSI 2' },
       { label: 'N° de brazos rectos', value: '4' },
@@ -392,7 +414,7 @@ const products = [
     name: 'PICADORA ESTACIONARIA DE CHALA',
     pdfPage: 12,
     description: 'Picadora ideal para cortar caña, pasto, malezas, y todo tipo de forrajes',
-    image: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489061194_122103155726831227_7816023746256053124_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TCDa1THcbfoQ7kNvwH10_7D&_nc_oc=Admkj_Qps1giKZnsMH6akpi5aJkrBWjY8CR0mfcSDWmG3OQ20SvngQ6lj1hluGOjG7asWNRnhHbfidRMnPtbkzOd&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=NA-2y0oFrKELiUG4lRUJ-Q&oh=00_AfF9UihTF-4KOOniy64C-K0-kimUvtJ6T9veKP0grPM4NA&oe=6814A1A4',
+    image: imagen14,
     specifications: [
       { label: 'Modelo', value: 'PCHFSI 1' },
       { label: 'N° de cuchillas', value: '8' },
@@ -444,9 +466,7 @@ const MachineGallery: React.FC = () => {
     <>
       <SocialIcons />
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12 text-indigo-900">
-          Nuestras Maquinarias
-        </h2>
+
 
         {/* Asegurar que las cards se distribuyan bien en todas las pantallas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">

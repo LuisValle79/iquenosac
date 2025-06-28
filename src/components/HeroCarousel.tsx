@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+import portada1 from '../assets/portada1.jpg';
+import portada2 from '../assets/portada2.jpg';
+import portada3 from '../assets/portada3.jpg';
+import portada4 from "../assets/Abonadora-Fertilizadora-Hidraulica.jpg";
+
+
+
 const images = [
-  {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488701882_122102567036831227_5810811552030735017_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=618840U2CSoQ7kNvwH9r9ji&_nc_oc=AdkeE-15u55bcmRjJL2Por0sbiIGMaq0pA4LGeTR4u8QmiYWRWJyAjc9mCZLouTbJhoycLtIaQLgRxPTyjnct6jl&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=2AokxqK5cgAXgNYFNpH-Rg&oh=00_AfFoxYnFvuwP7ZEgXqKNau-VaLpfJRvXlizQjMjHOH-eTA&oe=6814AD7D',
-    title: 'Implementos Agrícolas de Alta Calidad'
-  },
-  {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489809519_122102566970831227_6636887066957775758_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=aeF-Jbq08g8Q7kNvwEu_Kd7&_nc_oc=AdkowZGBsEiA825qcTWuThJO2xpcxVuoOHn5Qdy6Uare8PXocCLytrH_ytNUmyUHddBIxjY1efIzn0p3VwnLEzZd&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=oICWjUQ8mEh5Bqd6U2zq_Q&oh=00_AfEXw_AHJXxsO1DIFS2jtg4cdM3pTIR1N5EA7aQb9nq-ew&oe=681481C2',
-    title: 'Maquinaria de Última Generación'
-  },
-  {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/489436319_122102566976831227_6977553803374826236_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KFzFdUBueesQ7kNvwGdLByv&_nc_oc=AdklqEKcJlgKvZ-QC8tJBOCDXW8vYWlcjTQhn0IPChpv4mTkVF9sILQHo7MrsO5kO27WLiagsY49t5TbJ18IqWsG&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=khDw8Wv5TfO6F13_PCaa2g&oh=00_AfHGI-jc_VdybztaJ1oDXbkxiXo1JG5HY-VZGNBlYSLYvg&oe=68148884',
-    title: 'Soluciones para el Campo'
-  },
-  {
-    url: 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/488928785_122102567072831227_6074464536442912843_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hrqXi5Gdc8oQ7kNvwEPDUbW&_nc_oc=AdkxFQGWjv1bNjtdMrPIucOVeG0seKyzgUXWs2GG7K8IATa3wSwBnYoWy8yYUliV1u0ZISTecENTBaV_yR3EgyQf&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=st4ypOBr5L4bTIzqdPY5bw&oh=00_AfHnjvEZQwbzqNxjjNQFFbZIM01MsUimiuQfzGBa_ejDhQ&oe=68149A23',
-    title: 'Experiencia y Calidad'
-  }
+  { url: portada1, title: 'Implementos Agrícolas de Alta Calidad' },
+  { url: portada2, title: 'Maquinaria de Última Generación' },
+  { url: portada3, title: 'Soluciones para el Campo' },
+  { url: portada4, title: 'Experiencia y Calidad' }
 ];
 
 const HeroCarousel: React.FC = () => {
@@ -25,7 +20,8 @@ const HeroCarousel: React.FC = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
+
     if (isAutoPlaying) {
       interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
