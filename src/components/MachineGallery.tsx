@@ -4,42 +4,87 @@ import { FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
 import ProductModal from './ProductModal';
 import { supabase } from '../../lib/supabaseClient';
 
+interface MachineProduct {
+  id: number;
+  name: string;
+  description: string;
+  image_url: string;
+  pdf_url?: string;
+  specifications: { label: string; value: string }[];
+  features: string[];
+  dimensions: { width: number; height: number; depth: number; weight: number };
+}
+
 const MachineGallery: React.FC = () => {
   const [products, setProducts] = useState<MachineProduct[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<MachineProduct | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data, error } = await supabase
-        .from('machine_products')
-        .select('*')
-        .order('id', { ascending: false });
+      try {
+        setLoading(true);
+        setError(null);
+        const { data, error } = await supabase
+          .from('machine_products')
+          .select('id, name, description, image_url, pdf_url, specifications, features, dimensions, deleted')
+          .eq('deleted', false)
+          .order('id', { ascending: false });
 
-      if (error) {
-        console.error('Error al cargar productos:', error);
-      } else if (data) {
-        // Parsear los campos JSON
+        if (error) {
+          throw new Error(`Error al cargar productos: ${error.message}`);
+        }
+
+        // Parsear los campos JSON con manejo de errores
         const parsed = data.map((item: any) => ({
           ...item,
-          specifications: item.specifications ?? [],
-          features: item.features ?? [],
-          dimensions: item.dimensions ?? { width: 0, height: 0, depth: 0, weight: 0 },
+          specifications: parseJsonField(item.specifications, []),
+          features: parseJsonField(item.features, []),
+          dimensions: parseJsonField(item.dimensions, { width: 0, height: 0, depth: 0, weight: 0 }),
         }));
         setProducts(parsed);
+      } catch (err: any) {
+        console.error('Error al cargar productos:', err);
+        setError('No se pudieron cargar los productos. Por favor, intenta de nuevo.');
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     fetchProducts();
   }, []);
+
+  // Función auxiliar para parsear campos JSON con valor por defecto
+  const parseJsonField = (field: any, defaultValue: any) => {
+    if (!field) return defaultValue;
+    if (typeof field === 'string') {
+      try {
+        const parsed = JSON.parse(field);
+        return Array.isArray(parsed) || typeof parsed === 'object' ? parsed : defaultValue;
+      } catch (e) {
+        console.error(`Error parsing JSON field:`, e, field);
+        return defaultValue;
+      }
+    }
+    return field;
+  };
 
   const handleWhatsAppClick = (productName: string) => {
     const message = encodeURIComponent(`Hola, me gustaría solicitar una cotización para el producto: ${productName}`);
     window.open(`https://wa.me/51958840599?text=${message}`, '_blank');
   };
 
+  const handleViewDetails = (product: MachineProduct) => {
+    console.log('Abriendo modal para producto:', product.name); // Depuración
+    setSelectedProduct(product);
+  };
+
   if (loading) {
     return <div className="text-center py-10">Cargando productos...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center py-10 text-red-500">{error}</div>;
   }
 
   return (
@@ -65,13 +110,17 @@ const MachineGallery: React.FC = () => {
             >
               <div className="relative h-[300px] p-4 flex items-center justify-center bg-gray-50">
                 <img 
-                  src={product.image_url} 
+                  src={product.image_url || 'https://via.placeholder.com/300'} 
                   alt={product.name}
                   className="w-full h-full object-cover absolute inset-0"
+                  onError={(e) => {
+                    console.error('Error loading image for:', product.name);
+                    e.currentTarget.src = 'https://via.placeholder.com/300';
+                  }}
                 />
                 <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                   <button 
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={() => handleViewDetails(product)}
                     className="bg-white/90 backdrop-blur-sm text-tractor-400 px-6 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 group"
                   >
                     <Eye className="h-5 w-5 group-hover:scale-110 transition-transform" />
@@ -81,10 +130,10 @@ const MachineGallery: React.FC = () => {
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">
-                  {product.name}
+                  {product.name || 'Sin nombre'}
                 </h3>
                 <div className="bg-tractor-50 text-tractor-600 text-sm px-3 py-1 rounded-full inline-block mb-3">
-                  {product.specifications[0]?.value}
+                  {product.specifications[0]?.value || 'Sin especificaciones'}
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <button 
@@ -102,7 +151,7 @@ const MachineGallery: React.FC = () => {
                     </span>
                   </button>
                   <button 
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={() => handleViewDetails(product)}
                     className="p-2 text-tractor-400 hover:text-tractor-600 
                              transition-colors hover:bg-gray-100 rounded-full"
                   >
@@ -117,7 +166,10 @@ const MachineGallery: React.FC = () => {
         {selectedProduct && (
           <ProductModal
             product={selectedProduct}
-            onClose={() => setSelectedProduct(null)}
+            onClose={() => {
+              console.log('Cerrando modal'); // Depuración
+              setSelectedProduct(null);
+            }}
           />
         )}
       </div>
@@ -126,14 +178,3 @@ const MachineGallery: React.FC = () => {
 };
 
 export default MachineGallery;
-
-interface MachineProduct {
-  id: number;
-  name: string;
-  description: string;
-  image_url: string;
-  pdf_url?: string;
-  specifications: { label: string; value: string }[];
-  features: string[];
-  dimensions: { width: number; height: number; depth: number; weight: number };
-}

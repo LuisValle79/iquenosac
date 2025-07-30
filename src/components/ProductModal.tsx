@@ -1,8 +1,19 @@
 import React from 'react';
 import { X, Download, Check } from 'lucide-react';
 
+interface MachineProduct {
+  id: number;
+  name: string;
+  description: string;
+  image_url: string;
+  pdf_url?: string;
+  specifications: { label: string; value: string }[];
+  features: string[];
+  dimensions: { width: number; height: number; depth: number; weight: number };
+}
+
 interface ProductModalProps {
-  product: any;
+  product: MachineProduct;
   onClose: () => void;
 }
 
@@ -14,17 +25,10 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   };
 
   const handleDownloadFicha = () => {
-    // Abre el PDF directamente en la página específica y configura la impresión
-    const pdfWindow = window.open(
-      `https://www.implementosagricolasfsi.com/images/catalogo.pdf#page=${product.pdfPage}`,
-      '_blank'
-    );
-    
-    if (pdfWindow) {
-      pdfWindow.onload = () => {
-        pdfWindow.document.title = `Ficha Técnica - ${product.name}`;
-        pdfWindow.print();
-      };
+    if (product.pdf_url) {
+      window.open(product.pdf_url, '_blank');
+    } else {
+      alert('No hay ficha técnica disponible para este producto.');
     }
   };
 
@@ -42,66 +46,91 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
         </button>
 
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-800 pr-12 mb-6">{product.name}</h2>
+          <h2 className="text-2xl font-bold text-gray-800 pr-12 mb-6">{product.name || 'Producto'}</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <div className="relative group">
                 <img
-                  src={product.image}
+                  src={product.image_url || 'https://via.placeholder.com/300'}
                   alt={product.name}
                   className="w-full h-[400px] rounded-lg object-cover shadow-lg transition-transform duration-300 group-hover:scale-[1.02]"
+                  onError={(e) => {
+                    console.error('Error loading image for:', product.name);
+                    e.currentTarget.src = 'https://via.placeholder.com/300';
+                  }}
                 />
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <button
-                onClick={handleDownloadFicha}
-                className="w-full bg-green-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-700 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-xl"
-              >
-                <Download className="h-5 w-5" />
-                <span>Descargar Ficha Técnica</span>
-              </button>
+              {product.pdf_url && (
+                <button
+                  onClick={handleDownloadFicha}
+                  className="w-full bg-green-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-700 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-xl"
+                >
+                  <Download className="h-5 w-5" />
+                  <span>Descargar Ficha Técnica</span>
+                </button>
+              )}
             </div>
 
             <div className="space-y-6">
+              {product.description && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Descripción:</h3>
+                  <p className="text-gray-600">{product.description}</p>
+                </div>
+              )}
+
               <div>
                 <h3 className="text-lg font-semibold mb-2">Características:</h3>
-                <ul className="space-y-2">
-                  {product.features.map((feature: string, index: number) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                {product.features && product.features.length > 0 ? (
+                  <ul className="space-y-2">
+                    {product.features.map((feature: string, index: number) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-500">Sin características disponibles.</p>
+                )}
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold mb-2">Especificaciones:</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {product.specifications.map((spec: any, index: number) => (
-                    <div key={index} className="bg-gray-50 p-3 rounded-lg">
-                      <div className="text-sm text-gray-600">{spec.label}</div>
-                      <div className="font-medium">{spec.value}</div>
-                    </div>
-                  ))}
-                </div>
+                {product.specifications && product.specifications.length > 0 ? (
+                  <div className="grid grid-cols-2 gap-4">
+                    {product.specifications.map((spec, index) => (
+                      <div key={index} className="bg-gray-50 p-3 rounded-lg">
+                        <div className="text-sm text-gray-600">{spec.label}</div>
+                        <div className="font-medium">{spec.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-gray-500">Sin especificaciones disponibles.</p>
+                )}
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold mb-2">Dimensiones:</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="text-sm text-gray-600">Dimensiones (AxAxL)</div>
-                    <div className="font-medium">
-                      {product.dimensions.width}cm x {product.dimensions.height}cm x {product.dimensions.depth}cm
+                {product.dimensions && Object.keys(product.dimensions).length > 0 ? (
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <div className="text-sm text-gray-600">Dimensiones (AxAxL)</div>
+                      <div className="font-medium">
+                        {product.dimensions.width || 0}cm x {product.dimensions.height || 0}cm x {product.dimensions.depth || 0}cm
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <div className="text-sm text-gray-600">Peso</div>
+                      <div className="font-medium">{product.dimensions.weight || 0} kg</div>
                     </div>
                   </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="text-sm text-gray-600">Peso</div>
-                    <div className="font-medium">{product.dimensions.weight} kg</div>
-                  </div>
-                </div>
+                ) : (
+                  <p className="text-gray-500">Sin dimensiones disponibles.</p>
+                )}
               </div>
             </div>
           </div>
