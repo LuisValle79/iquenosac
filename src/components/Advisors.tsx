@@ -83,8 +83,7 @@ const Advisors: React.FC = () => {
           {/* Content Section */}
           <div className="md:w-3/5 p-6 flex flex-col justify-between bg-gradient-to-br from-white to-gray-50">
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{advisor.name}</h3> {/* Nombre */}
-              <p className="text-md text-gray-600 mb-4">{advisor.position || 'Sin cargo'}</p> {/* Cargo debajo del nombre */}
+
               <h4 className="text-lg font-semibold text-gray-900 mb-3">Especialidades:</h4>
               <div className="flex flex-wrap gap-2 mb-6">
                 {advisor.specialties.map((specialty, index) => (
