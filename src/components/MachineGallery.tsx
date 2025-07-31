@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Eye, Download } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import { FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
 import ProductModal from './ProductModal';
 import { supabase } from '../../lib/supabaseClient';
@@ -94,10 +94,10 @@ const MachineGallery: React.FC = () => {
         <a href="https://wa.me/51958840599" target="_blank" rel="noopener noreferrer">
           <FaWhatsapp className="text-green-500 h-8 w-8 hover:scale-110 transition-transform" />
         </a>
-        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.facebook.com/implementosagricolas.lima" target="_blank" rel="noopener noreferrer">
           <FaFacebook className="text-blue-600 h-8 w-8 hover:scale-110 transition-transform" />
         </a>
-        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/fsi.implementos.agricolas/" target="_blank" rel="noopener noreferrer">
           <FaInstagram className="text-pink-500 h-8 w-8 hover:scale-110 transition-transform" />
         </a>
       </div>

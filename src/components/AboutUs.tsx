@@ -15,7 +15,11 @@ const AboutUs: React.FC = () => {
         <div>
           <h3 className="text-2xl font-bold text-indigo-900 mb-4">Nuestra Historia</h3>
           <p className="text-gray-600 leading-relaxed">
-            Con más de dos décadas de experiencia en la industria metalúrgica, El Iqueño SAC se ha consolidado como líder en la fabricación y mantenimiento de maquinaria industrial en la región de Ica. Nuestro compromiso con la calidad y la innovación nos ha permitido crecer y evolucionar, manteniendo siempre los más altos estándares en cada proyecto que emprendemos.
+            Con más de dos décadas de experiencia en la industria metalúrgica, 
+            El Iqueño SAC se ha consolidado como líder en la fabricación y mantenimiento 
+            de maquinaria industrial en la región de Ica. Nuestro compromiso con la 
+            calidad y la innovación nos ha permitido crecer y evolucionar, 
+            manteniendo siempre los más altos estándares en cada proyecto que emprendemos.
           </p>
         </div>
 
@@ -25,7 +29,9 @@ const AboutUs: React.FC = () => {
             <div>
               <h4 className="text-xl font-semibold text-indigo-900 mb-2">Misión</h4>
               <p className="text-gray-600">
-                Proporcionar soluciones metalúrgicas innovadoras y de alta calidad que impulsen el éxito de nuestros clientes, manteniendo un compromiso inquebrantable con la excelencia y la satisfacción del cliente.
+                Proporcionar soluciones metalúrgicas innovadoras y de alta calidad que impulsen 
+                el éxito de nuestros clientes, manteniendo un compromiso inquebrantable con 
+                la excelencia y la satisfacción del cliente.
               </p>
             </div>
           </div>
@@ -35,7 +41,9 @@ const AboutUs: React.FC = () => {
             <div>
               <h4 className="text-xl font-semibold text-indigo-900 mb-2">Visión</h4>
               <p className="text-gray-600">
-                Ser reconocidos como la empresa líder en soluciones metalúrgicas en el Perú, destacando por nuestra innovación, calidad y compromiso con el desarrollo industrial de la región.
+                Ser reconocidos como la empresa líder en soluciones metalúrgicas en el Perú,
+                 destacando por nuestra innovación, calidad y compromiso con el desarrollo
+                  industrial de la región.
               </p>
             </div>
           </div>

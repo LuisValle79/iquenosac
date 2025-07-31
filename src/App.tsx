@@ -14,6 +14,7 @@ import HeroCarousel from './components/HeroCarousel';
 import image1 from './assets/portada1.jpg';
 import image2 from './assets/portada2.jpg';
 import image3 from './assets/portada3.jpg';
+import image4 from './assets/Abonadora-Fertilizadora-Hidraulica.jpg';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -130,7 +131,7 @@ function App() {
 todos los agricultores y empresas agroindustriales del país en 
 hacer más fácil la tarea del agricultor y realizarlo en menos 
 tiempo. 
-Más de 30 años de experiencia fabricando maquinaria e 
+Más de 35 años de experiencia fabricando maquinaria e 
 implementos agrícolas para el campo peruano a los mejores 
 precios. 
 F.S.I SAC, desarrolla, innova, fabrica implementos y maquinaria 
@@ -143,7 +144,7 @@ agrícola para tractor.
               </p>
               <div className="grid grid-cols-2 gap-6 mt-8">
                 <div className="bg-tractor-50 p-6 rounded-lg text-center">
-                  <h4 className="text-4xl font-bold text-tractor-200 mb-2">20+</h4>
+                  <h4 className="text-4xl font-bold text-tractor-200 mb-2">35+</h4>
                   <p className="text-gray-600">Años de Experiencia</p>
                 </div>
                 <div className="bg-machinery-50 p-6 rounded-lg text-center">
@@ -155,7 +156,7 @@ agrícola para tractor.
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <img src={image1} alt="Tractor en campo" className="rounded-lg shadow-lg" />
-                <img src="https://th.bing.com/th/id/OIP.pIf1cCLg8Mq7Y9UvKPQeBwHaE8?rs=1&pid=ImgDetMain" alt="Implemento agrícola" className="rounded-lg shadow-lg" />
+                <img src={image4} alt="Implemento agrícola" className="rounded-lg shadow-lg" />
               </div>
               <div className="space-y-4 mt-8">
                 <img src={image2} alt="Trabajo en campo" className="rounded-lg shadow-lg" />
@@ -329,7 +330,7 @@ agrícola para tractor.
               <p className="text-tractor-50">
                 Lunes a Viernes: 08:00 AM - 01:00 PM<br />
                                  03:00 PM - 06:00 PM<br />
-                Sábados: 09:00 AM - 1:00 PM<br />
+                Sábados: 08:00 AM - 1:00 PM<br />
                         03:00 PM - 06:00 PM<br />
                 Domingos: Cerrado
               </p>
