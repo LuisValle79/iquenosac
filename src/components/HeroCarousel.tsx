@@ -78,7 +78,7 @@ const HeroCarousel: React.FC = () => {
               {images[currentIndex].title}
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
-              Especialistas en maquinaria agrícola y soluciones para el campo desde hace más de 20 años
+              Especialistas en maquinaria agrícola y soluciones para el campo desde hace más de 30 años
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center max-w-[280px] sm:max-w-none mx-auto sm:mx-0">
               <a 
