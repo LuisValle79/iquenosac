@@ -38,8 +38,7 @@ function App() {
     { href: '#testimonios', label: 'Testimonios' },
     { href: '#asesores', label: 'Asesores' },
     { href: '#contacto', label: 'Contacto' },
-    { href: '#buscar', label: 'Buscar' },
-
+    
   ];
 
     const sectionVariants = {
