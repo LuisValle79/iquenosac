@@ -6,7 +6,7 @@ interface LogoProps {
   showText?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({ height = 48, showText = true }) => {
+const Logo: React.FC<LogoProps> = ({ height = 48 }) => {
   return (
     <div className="flex items-center">
       <img 
