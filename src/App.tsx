@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone, Mail, MapPin, ChevronRight, Users, Building, Target } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, ChevronRight, Users, Building, Target, Search } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import MachineGallery from './components/MachineGallery';
 import { motion } from 'framer-motion';
@@ -21,6 +21,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -38,10 +39,9 @@ function App() {
     { href: '#testimonios', label: 'Testimonios' },
     { href: '#asesores', label: 'Asesores' },
     { href: '#contacto', label: 'Contacto' },
-    
   ];
 
-    const sectionVariants = {
+  const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
   };
@@ -53,31 +53,42 @@ function App() {
   return (
     <div className="min-h-screen bg-tractor-50">
       {/* Navigation */}
-      <nav className="bg-tractor-200 text-white fixed w-full z-50">
+      <nav className="bg-tractor-200 text-white fixed w-full z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center">
-              <Logo height={60} />
+            <div className="ml-[-10px] transform transition-all duration-300 hover:scale-105">
+              <Logo height={60} className="shadow-md rounded-lg" />
             </div>
            
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="flex items-center space-x-4">
+            {/* Desktop Navigation and Search */}
+            <div className="hidden md:flex items-center space-x-3 mr-[-10px]">
+              <div className="flex items-center space-x-2">
                 {menuItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="hover:text-machinery-200 px-3 py-2 transition duration-300"
+                    className="hover:text-machinery-200 px-4 py-2 rounded-md transition duration-300 hover:bg-tractor-300/50"
                   >
                     {item.label}
                   </a>
                 ))}
               </div>
+              <div className="ml-6 relative">
+                <input
+                  type="text"
+                  placeholder="Buscar productos ..."
+                  className="bg-tractor-100 text-tractor-800 placeholder-tractor-500 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-machinery-200 transition duration-300 w-72 shadow-sm hover:shadow-md"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && console.log('Buscando:', searchQuery)}
+                />
+                <Search className="absolute left-3 top-2 h-5 w-5 text-tractor-500 transition-transform hover:scale-110" />
+              </div>
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button onClick={toggleMenu} className="p-2">
+              <button onClick={toggleMenu} className="p-2 rounded-full hover:bg-tractor-300/50 transition-colors duration-300">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
@@ -128,7 +139,7 @@ function App() {
         <HeroCarousel />
       </section>
 
- {/* About Us Section */}
+      {/* About Us Section */}
       <motion.section
         id="quienes-somos"
         className="py-24 bg-white"
@@ -262,20 +273,14 @@ function App() {
       </motion.section>
 
       {/* Products Section */}
-{/* Products Section */}
-<section id="maquinarias" className="py-20 bg-white w-full">
-  <div className="w-full px-4">
-    <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
-      Nuestros Productos
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 w-full">
-      {/* Product cards */}
-      <MachineGallery />
-    </div>
-  </div>
-</section>
-
-
+      <section id="maquinarias" className="py-20 bg-white w-full">
+        <div className="w-full px-4">
+          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
+            Nuestros Productos
+          </h2>
+          <MachineGallery searchQuery={searchQuery} />
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-16 bg-tractor-200">
@@ -364,24 +369,22 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4 flex items-center">
-                <Logo height={62} />
+                <Logo height={50} />
               </h3>
               <p className="text-tractor-50">
                 Expertos en soluciones metalúrgicas industriales.
               </p>
             </div>
 
-           <div>
+            <div>
               <p className="text-tractor-50">
                 Estamos asociados con la camara de comercio de lima.
               </p>
               <br />
               <h3 className="text-xl font-bold mb-4 flex items-center">
-                <img src={image5}  />
+                <img src={image5} alt="Cámara de Comercio de Lima" className="h-30 w-auto" />
               </h3>             
             </div>
-
-
 
             <div>
               <h3 className="text-xl font-bold mb-4">Enlaces Rápidos</h3>
