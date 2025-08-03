@@ -282,6 +282,65 @@ function App() {
         </div>
       </section>
 
+      {/* Spare Parts Section */}
+      <motion.section
+        id="repuestos"
+        className="py-24 bg-gradient-to-b from-white to-gray-50"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight">
+            Nuestros Repuestos
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Descubre una amplia gama de repuestos de alta calidad para mantener tus equipos agrícolas en óptimas condiciones. Garantizamos durabilidad y compatibilidad.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {[
+              { id: 1, name: 'Filtro de Aire', image: image4, price: '$25.00' },
+              { id: 2, name: 'Cuchilla de Arado', image: image1, price: '$15.00' },
+              { id: 3, name: 'Correa de Transmisión', image: image2, price: '$30.00' },
+              { id: 4, name: 'Bomba de Agua', image: image3, price: '$45.00' },
+            ].map((part) => (
+              <motion.div
+                key={part.id}
+                className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <div className="relative h-48 w-full">
+                  <img
+                    src={part.image}
+                    alt={part.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/300')}
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button
+                      className="bg-white/90 text-tractor-600 px-4 py-2 rounded-lg font-semibold hover:bg-white transition-colors duration-300"
+                    >
+                      Ver Detalles
+                    </button>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">{part.name}</h3>
+                  <p className="text-tractor-600 font-medium">{part.price}</p>
+                  <button
+                    className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-300"
+                  >
+                    Cotizar
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
       {/* CTA Section */}
       <section className="py-16 bg-tractor-200">
         <div className="max-w-7xl mx-auto px-4 text-center">
