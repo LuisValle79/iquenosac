@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Eye } from 'lucide-react';
-import { FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaWhatsapp, FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
 import ProductModal from './ProductModal';
 import { supabase } from '../../lib/supabaseClient';
 
@@ -109,6 +109,9 @@ const MachineGallery: React.FC<MachineGalleryProps> = ({ searchQuery }) => {
         </a>
         <a href="https://www.instagram.com/fsi.implementos.agricolas/" target="_blank" rel="noopener noreferrer">
           <FaInstagram className="text-pink-500 h-8 w-8 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://www.tiktok.com/@fsi.implementos.agricolas" target="_blank" rel="noopener noreferrer">
+          <FaTiktok className="text-black h-6 w-6 hover:scale-110 transition-transform" />
         </a>
       </div>
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
