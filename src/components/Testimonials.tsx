@@ -1,4 +1,7 @@
 import React from 'react';
+import imagelorena from '../assets/lorena.png';
+import imagemaicol from '../assets/maicol.png';
+import imagemanzo from '../assets/manzo.png';
 
 const testimonials = [
   {
@@ -6,21 +9,21 @@ const testimonials = [
     name: 'Carlos Rodríguez',
     company: 'Industrias del Sur',
     content: 'Excelente servicio y calidad en la fabricación de nuestras máquinas industriales. El equipo de El Iqueño SAC demostró gran profesionalismo.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
+    image: imagemaicol
   },
   {
     id: 2,
     name: 'María González',
     company: 'Metalúrgica Central',
     content: 'Trabajamos con El Iqueño SAC en varios proyectos y siempre entregan a tiempo y con la calidad prometida.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
+    image: imagelorena
   },
   {
     id: 3,
     name: 'Jorge Mendoza',
     company: 'Constructora del Norte',
     content: 'Su experiencia en metalistería es incomparable. Han sido un socio clave en nuestros proyectos de construcción.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
+    image: imagemanzo
   }
 ];
 

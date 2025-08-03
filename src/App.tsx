@@ -320,7 +320,7 @@ function App() {
       <section id="asesores" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
-            Nuestros Asesores
+            Personal Administrativo
           </h2>
           <Advisors />
         </div>
