@@ -1,6 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /login/
-
-Sitemap: https://implementosagricolasfsi.com/sitemap.xml
+Sitemap: https://eliquenoimplementosagricolas.com/sitemap.xml
