@@ -33,8 +33,10 @@ const SparePartModal: React.FC<SparePartModalProps> = ({ sparePart, onClose }) =
             className="w-full h-48 object-cover rounded-lg mb-4"
             onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/300')}
           />
+                    <h3 className="text-lg font-semibold text-tractor-700 mb-2">Descripcion:</h3>
+          <ul className="list-disc pl-5 text-gray-600"></ul>
           <p className="text-gray-600 mb-4">{sparePart.description}</p>
-          <p className="text-tractor-600 font-semibold mb-4">Precio: {sparePart.price}</p>
+          
         </div>
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-tractor-700 mb-2">Especificaciones</h3>
