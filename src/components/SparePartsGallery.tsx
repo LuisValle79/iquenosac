@@ -24,6 +24,7 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
   const [selectedSparePart, setSelectedSparePart] = useState<SparePart | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>(''); // Estado para el término de búsqueda
 
   useEffect(() => {
     const fetchSpareParts = async () => {
@@ -66,10 +67,13 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
     return field;
   };
 
-  const filteredSpareParts = spareParts.filter(sparePart =>
-    sparePart.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    sparePart.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filtrar repuestos con coincidencias parciales o mostrar todos si searchTerm está vacío
+  const filteredSpareParts = searchTerm.trim() === ''
+    ? spareParts
+    : spareParts.filter(sparePart =>
+        sparePart.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        sparePart.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
   const handleViewDetails = (sparePart: SparePart) => {
     setSelectedSparePart(sparePart);
@@ -85,6 +89,24 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
 
   return (
     <>
+      {/* Buscador en tiempo real */}
+      <div className="mb-8">
+        <div className="relative w-full max-w-2xl mx-auto">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Busca un repuesto por nombre o descripción..."
+            className="w-full px-4 py-2 pl-10 text-tractor-600 bg-tractor-50 border border-tractor-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-tractor-600 focus:border-transparent transition-all duration-300 placeholder-tractor-400 text-sm md:text-base"
+          />
+          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tractor-600">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1112 5.5a7.5 7.5 0 014.65 13.65z"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {filteredSpareParts.length > 0 ? (
           filteredSpareParts.map((sparePart) => (
@@ -112,11 +134,10 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">{sparePart.name}</h3>
+                <div className="bg-tractor-50 text-tractor-600 text-sm px-3 py-1 rounded-full inline-block mb-3">
+                  {sparePart.specifications[0]?.value || 'Sin especificaciones'}
+                </div>
                 
-                                  <div className="bg-tractor-50 text-tractor-600 text-sm px-3 py-1 rounded-full inline-block mb-3">
-                    {sparePart.specifications[0]?.value || 'Sin especificaciones'}
-                  </div>
-                <p className="text-tractor-600 font-medium mb-4">Precio: S/. {sparePart.price}</p>
                 <button
                   onClick={() => handleWhatsAppClick(sparePart.name)}
                   className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-300 shadow-md hover:shadow-lg"

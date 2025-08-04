@@ -24,6 +24,7 @@ const MachineGallery: React.FC<MachineGalleryProps> = ({ searchQuery }) => {
   const [selectedProduct, setSelectedProduct] = useState<MachineProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>(''); // Estado para el término de búsqueda
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -73,11 +74,12 @@ const MachineGallery: React.FC<MachineGalleryProps> = ({ searchQuery }) => {
     return field;
   };
 
-  // Filtrar productos según el searchQuery
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    product.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filtrar productos con coincidencias parciales o mostrar todos si searchTerm está vacío
+  const filteredProducts = searchTerm.trim() === ''
+    ? products
+    : products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
   const handleWhatsAppClick = (productName: string) => {
     const message = encodeURIComponent(`Hola, me gustaría solicitar una cotización para el producto: ${productName}`);
@@ -115,6 +117,24 @@ const MachineGallery: React.FC<MachineGalleryProps> = ({ searchQuery }) => {
         </a>
       </div>
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
+        {/* Buscador en tiempo real */}
+        <div className="mb-8">
+          <div className="relative w-full max-w-2xl mx-auto">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Busca un producto por nombre..."
+              className="w-full px-4 py-2 pl-10 text-tractor-600 bg-tractor-50 border border-tractor-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-tractor-600 focus:border-transparent transition-all duration-300 placeholder-tractor-400 text-sm md:text-base"
+            />
+            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tractor-600">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1112 5.5a7.5 7.5 0 014.65 13.65z"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
