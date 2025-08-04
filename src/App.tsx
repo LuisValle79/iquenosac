@@ -36,6 +36,7 @@ function App() {
     { href: '#inicio', label: 'Inicio' },
     { href: '#quienes-somos', label: 'Quiénes Somos' },
     { href: '#maquinarias', label: 'Maquinarias' },
+    { href: '#repuestos', label: 'Repuestos' },
     { href: '#videos', label: 'Videos' },
     { href: '#testimonios', label: 'Testimonios' },
     { href: '#asesores', label: 'Asesores' },
