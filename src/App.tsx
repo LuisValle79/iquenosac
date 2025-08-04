@@ -43,13 +43,42 @@ function App() {
     { href: '#contacto', label: 'Contacto' },
   ];
 
+  // Variantes de animación para secciones (entrada desde lados alternados)
   const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+    hidden: (index: number) => ({
+      opacity: 0,
+      x: index % 2 === 0 ? -100 : 100, // Alterna izquierda (-100) y derecha (100)
+      scale: 0.95,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        delay: 0.1, // Retraso mínimo entre secciones
+        duration: 0.6,
+        ease: [0.43, 0.13, 0.23, 0.96], // Efecto de ease personalizado
+      },
+    },
   };
 
+  // Variantes de animación para cards dentro de secciones
   const cardVariants = {
-    hover: { scale: 1.03, boxShadow: '0 15px 30px rgba(0,0,0,0.15)', transition: { duration: 0.3 } },
+    hidden: { opacity: 0, y: 20 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.05, // Retraso mínimo para cards
+        duration: 0.5,
+        ease: [0.43, 0.13, 0.23, 0.96],
+      },
+    }),
+    hover: {
+      scale: 1.05,
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)',
+      transition: { duration: 0.4, ease: 'easeOut' },
+    },
   };
 
   return (
@@ -75,7 +104,6 @@ function App() {
                   </a>
                 ))}
               </div>
-
             </div>
 
             {/* Mobile menu button */}
@@ -101,16 +129,16 @@ function App() {
                 </button>
               </div>
               <div className="space-y-4">
-              {menuItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
+                {menuItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
                     className="block px-4 py-3 text-white hover:bg-tractor-300 rounded-lg transition-colors duration-300"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
                 <div className="pt-6 border-t border-tractor-300">
                   <a
                     href="#contacto"
@@ -127,27 +155,59 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="inicio">
+      <motion.section
+        id="inicio"
+        className="relative"
+        custom={0}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <HeroCarousel />
-      </section>
+      </motion.section>
 
       {/* About Us Section */}
       <motion.section
         id="quienes-somos"
         className="py-24 bg-white"
+        custom={1}
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight ">
+          <motion.h2
+            className="text-3xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Quiénes Somos
-          </h2>
+          </motion.h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-tractor-200">Nuestra Historia</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <motion.h3
+                className="text-2xl font-bold text-tractor-200"
+                custom={0}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                Nuestra Historia
+              </motion.h3>
+              <motion.p
+                className="text-gray-600 leading-relaxed"
+                custom={1}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 FSI Implementos Agrícolas es una empresa peruana que nace como respuesta a la necesidad de
                 todos los agricultores y empresas agroindustriales del país en
                 hacer más fácil la tarea del agricultor y realizarlo en menos
@@ -155,25 +215,49 @@ function App() {
                 implementos agrícolas para el campo peruano a los mejores
                 precios. F.S.I SAC, desarrolla, innova, fabrica implementos y maquinaria
                 agrícola para tractor.
-              </p>
-              <h3 className="text-2xl font-bold text-tractor-200">Nuestra Misión</h3>
-              <p className="text-gray-600 leading-relaxed">
+              </motion.p>
+              <motion.h3
+                className="text-2xl font-bold text-tractor-200"
+                custom={2}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                Nuestra Misión
+              </motion.h3>
+              <motion.p
+                className="text-gray-600 leading-relaxed"
+                custom={3}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 Proporcionar implementos agrícolas de la más alta calidad que mejoren la eficiencia y
                 productividad de nuestros clientes, contribuyendo al desarrollo del sector agrícola.
-              </p>
+              </motion.p>
               <div className="grid grid-cols-2 gap-6 mt-8">
                 <motion.div
                   className="bg-tractor-50 p-6 rounded-xl text-center shadow-md"
+                  custom={4}
                   variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
                   whileHover="hover"
+                  viewport={{ once: true }}
                 >
                   <h4 className="text-4xl font-bold text-tractor-200 mb-2">30+</h4>
                   <p className="text-gray-600">Años de Experiencia</p>
                 </motion.div>
                 <motion.div
                   className="bg-machinery-50 p-6 rounded-xl text-center shadow-md"
+                  custom={5}
                   variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
                   whileHover="hover"
+                  viewport={{ once: true }}
                 >
                   <h4 className="text-4xl font-bold text-machinery-200 mb-2">1000+</h4>
                   <p className="text-gray-600">Clientes Satisfechos</p>
@@ -186,13 +270,21 @@ function App() {
                   src={image1}
                   alt="Tractor en campo"
                   className="rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
+                  custom={6}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
                 />
                 <motion.img
                   src={image4}
                   alt="Implemento agrícola"
                   className="rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
+                  custom={7}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
                 />
               </div>
               <div className="space-y-4 mt-8">
@@ -200,13 +292,21 @@ function App() {
                   src={image2}
                   alt="Trabajo en campo"
                   className="rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
+                  custom={8}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
                 />
                 <motion.img
                   src={image3}
                   alt="Trabajo en campo"
                   className="rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
+                  custom={9}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
                 />
               </div>
             </div>
@@ -217,15 +317,23 @@ function App() {
       {/* Services Section */}
       <motion.section
         className="py-24 bg-gradient-to-b from-tractor-50 to-tractor-100"
+        custom={2}
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight">
+          <motion.h2
+            className="text-3xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Nuestros Servicios
-          </h2>
+          </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -250,8 +358,12 @@ function App() {
               <motion.div
                 key={index}
                 className="bg-white p-6 rounded-xl shadow-lg"
+                custom={index}
                 variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
                 whileHover="hover"
+                viewport={{ once: true }}
               >
                 <div className={`w-12 h-12 ${service.bg} rounded-full flex items-center justify-center mb-4`}>
                   {service.icon}
@@ -265,172 +377,409 @@ function App() {
       </motion.section>
 
       {/* Products Section */}
-      <section id="maquinarias" className="py-20 bg-white w-full">
+      <motion.section
+        id="maquinarias"
+        className="py-20 bg-white w-full"
+        custom={3}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="w-full px-4">
-          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
+          <motion.h2
+            className="text-3xl font-extrabold text-center mb-12 text-tractor-200"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Nuestros Productos
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-Ofrecemos una amplia gama de implementos como: cosechadoras, picadoras, sembradoras, cultivadoras, abonadoras, y entre otros equipos diseñados para tareas específicas del sector agrícola.
- Cada implemento es cuidadosamente fabricado para asegurar un rendimiento óptimo y una larga vida útil, incluso en terrenos exigentes.</p>
+          </motion.h2>
+          <motion.p
+            className="text-center text-gray-600 mb-12 max-w-2xl mx-auto"
+            custom={1}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            Ofrecemos una amplia gama de implementos como: cosechadoras, picadoras, cultivadoras, abonadoras, y entre otros equipos diseñados para tareas específicas del sector agrícola.
+            Cada implemento es cuidadosamente fabricado para asegurar un rendimiento óptimo y una larga vida útil, incluso en terrenos exigentes.
+          </motion.p>
           <MachineGallery searchQuery={searchQuery} />
         </div>
-      </section>
+      </motion.section>
 
       {/* Spare Parts Section */}
       <motion.section
         id="repuestos"
         className="py-24 bg-gradient-to-b from-white to-gray-50"
+        custom={4}
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight">
+          <motion.h2
+            className="text-4xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Nuestros Repuestos
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            className="text-center text-gray-600 mb-12 max-w-2xl mx-auto"
+            custom={1}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Descubre una amplia gama de repuestos de alta calidad para mantener tus equipos agrícolas en óptimas condiciones. Garantizamos durabilidad y compatibilidad.
-          </p>
+          </motion.p>
           <SparePartsGallery searchQuery={searchQuery} />
         </div>
       </motion.section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-tractor-200">
+      <motion.section
+        className="py-16 bg-tractor-200"
+        custom={5}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-extrabold text-white mb-6">
+          <motion.h2
+            className="text-3xl font-extrabold text-white mb-6"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             ¿Necesitas un implemento específico?
-          </h2>
-          <p className="text-tractor-50 text-xl mb-8">
+          </motion.h2>
+          <motion.p
+            className="text-tractor-50 text-xl mb-8"
+            custom={1}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Contáctanos y te ayudaremos a encontrar la solución perfecta para tu necesidad
-          </p>
-          <a
+          </motion.p>
+          <motion.a
             href="#contacto"
             className="bg-machinery-200 text-tractor-400 px-8 py-3 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center"
+            custom={2}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            whileHover="hover"
+            viewport={{ once: true }}
           >
             Solicitar Cotización
             <ChevronRight className="ml-2 h-5 w-5" />
-          </a>
+          </motion.a>
         </div>
-      </section>
+      </motion.section>
 
       {/* Video Gallery Section */}
-      <section id="videos" className="py-20 bg-white">
+      <motion.section
+        id="videos"
+        className="py-20 bg-white"
+        custom={6}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
+          <motion.h2
+            className="text-3xl font-extrabold text-center mb-12 text-tractor-200"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Videos de Nuestros Proyectos
-          </h2>
+          </motion.h2>
           <VideoGallery />
         </div>
-      </section>
+      </motion.section>
 
       {/* Testimonials Section */}
-      <section id="testimonios" className="py-20 bg-tractor-50">
+      <motion.section
+        id="testimonios"
+        className="py-20 bg-tractor-50"
+        custom={7}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
+          <motion.h2
+            className="text-3xl font-extrabold text-center mb-12 text-tractor-200"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Testimonios de Clientes
-          </h2>
+          </motion.h2>
           <Testimonials />
         </div>
-      </section>
+      </motion.section>
 
       {/* Advisors Section */}
-      <section id="asesores" className="py-20 bg-white">
+      <motion.section
+        id="asesores"
+        className="py-20 bg-white"
+        custom={8}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
+          <motion.h2
+            className="text-3xl font-extrabold text-center mb-12 text-tractor-200"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Personal Administrativo
-          </h2>
+          </motion.h2>
           <Advisors />
         </div>
-      </section>
+      </motion.section>
 
       {/* Clients Section */}
-      <Clients />
+      <motion.section
+        className="py-20 bg-white"
+        custom={9}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <Clients />
+      </motion.section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-tractor-50">
+      <motion.section
+        id="contacto"
+        className="py-20 bg-tractor-50"
+        custom={10}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
+          <motion.h2
+            className="text-3xl font-extrabold text-center mb-12 text-tractor-200"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             Contáctanos
-          </h2>
+          </motion.h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <ContactForm onSuccess={handleContactSuccess} />
             </div>
             <div className="space-y-6">
-              <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
+              <motion.div
+                className="flex items-center p-4 bg-white rounded-lg shadow-sm"
+                custom={1}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <Phone className="h-6 w-6 text-tractor-200 mr-3" />
                 <span>+51 958 840 599</span>
-              </div>
-              <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
+              </motion.div>
+              <motion.div
+                className="flex items-center p-4 bg-white rounded-lg shadow-sm"
+                custom={2}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <Mail className="h-6 w-6 text-tractor-200 mr-3" />
                 <span>eliquenosac.lili@gmail.com</span>
-              </div>
-              <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
+              </motion.div>
+              <motion.div
+                className="flex items-center p-4 bg-white rounded-lg shadow-sm"
+                custom={3}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <MapPin className="h-6 w-6 text-tractor-200 mr-3" />
                 <span>Jr. Augusto B. Leguia n 523. Imperial cañete Lima Perú</span>
-              </div>
-              <Map />
+              </motion.div>
+              <motion.div
+                custom={4}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <Map />
+              </motion.div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="bg-tractor-200 text-white py-12">
+      <motion.footer
+        className="bg-tractor-200 text-white py-12"
+        custom={11}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4 flex items-center">
+              <motion.h3
+                className="text-xl font-bold mb-4 flex items-center"
+                custom={0}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <Logo height={50} />
-              </h3>
-              <p className="text-tractor-50">
+              </motion.h3>
+              <motion.p
+                className="text-tractor-50"
+                custom={1}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 Expertos en soluciones metalúrgicas industriales.
-              </p>
+              </motion.p>
             </div>
 
             <div>
-              <p className="text-tractor-50">
+              <motion.p
+                className="text-tractor-50"
+                custom={0}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 Estamos asociados con la camara de comercio de lima.
-              </p>
+              </motion.p>
               <br />
-              <h3 className="text-xl font-bold mb-4 flex items-center">
+              <motion.h3
+                className="text-xl font-bold mb-4 flex items-center"
+                custom={1}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <img src={image5} alt="Cámara de Comercio de Lima" className="h-30 w-auto" />
-              </h3>             
+              </motion.h3>             
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-4">Enlaces Rápidos</h3>
+              <motion.h3
+                className="text-xl font-bold mb-4"
+                custom={0}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                Enlaces Rápidos
+              </motion.h3>
               <ul className="space-y-2">
-                {menuItems.map((item) => (
-                  <li key={item.href}>
+                {menuItems.map((item, index) => (
+                  <motion.li
+                    key={item.href}
+                    custom={index}
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
                     <a href={item.href} className="text-tractor-50 hover:text-white transition duration-300">
                       {item.label}
                     </a>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-4">Horario de Atención</h3>
-              <p className="text-tractor-50">
+              <motion.h3
+                className="text-xl font-bold mb-4"
+                custom={0}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                Horario de Atención
+              </motion.h3>
+              <motion.p
+                className="text-tractor-50"
+                custom={1}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 Lunes a Viernes: 08:00 AM - 01:00 PM<br />
-                                 03:00 PM - 06:00 PM<br />
+                03:00 PM - 06:00 PM<br />
                 Sábados: 08:00 AM - 1:00 PM<br />
-                        03:00 PM - 06:00 PM<br />
+                03:00 PM - 06:00 PM<br />
                 Domingos: Cerrado
-              </p>
+              </motion.p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-tractor-300 text-center">
-            <p className="text-tractor-50">
+            <motion.p
+              className="text-tractor-50"
+              custom={0}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               © {new Date().getFullYear()} El Iqueño SAC. Todos los derechos reservados.
-            </p>
+            </motion.p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
 
       {/* Alert Component */}
       {showAlert && (
