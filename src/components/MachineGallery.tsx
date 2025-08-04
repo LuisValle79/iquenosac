@@ -110,7 +110,7 @@ const MachineGallery: React.FC<MachineGalleryProps> = ({ searchQuery }) => {
         <a href="https://www.instagram.com/fsi.implementos.agricolas/" target="_blank" rel="noopener noreferrer">
           <FaInstagram className="text-pink-500 h-8 w-8 hover:scale-110 transition-transform" />
         </a>
-        <a href="https://www.tiktok.com/@fsi.implementos.agricolas" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.tiktok.com/@www.fsi.com" target="_blank" rel="noopener noreferrer">
           <FaTiktok className="text-black h-6 w-6 hover:scale-110 transition-transform" />
         </a>
       </div>
