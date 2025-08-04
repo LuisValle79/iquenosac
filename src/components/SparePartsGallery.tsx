@@ -96,7 +96,7 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Busca un repuesto por nombre o descripción..."
+            placeholder="Busca un repuesto por nombre..."
             className="w-full px-4 py-2 pl-10 text-tractor-600 bg-tractor-50 border border-tractor-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-tractor-600 focus:border-transparent transition-all duration-300 placeholder-tractor-400 text-sm md:text-base"
           />
           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tractor-600">

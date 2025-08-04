@@ -269,6 +269,9 @@ function App() {
           <h2 className="text-3xl font-extrabold text-center mb-12 text-tractor-200">
             Nuestros Productos
           </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+Ofrecemos una amplia gama de implementos como: cosechadoras, picadoras, sembradoras, cultivadoras, abonadoras, y entre otros equipos diseñados para tareas específicas del sector agrícola.
+ Cada implemento es cuidadosamente fabricado para asegurar un rendimiento óptimo y una larga vida útil, incluso en terrenos exigentes.</p>
           <MachineGallery searchQuery={searchQuery} />
         </div>
       </section>
