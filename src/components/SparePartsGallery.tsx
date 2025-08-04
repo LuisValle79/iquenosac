@@ -112,7 +112,11 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">{sparePart.name}</h3>
-                <p className="text-tractor-600 font-medium mb-4">{sparePart.price}</p>
+                
+                                  <div className="bg-tractor-50 text-tractor-600 text-sm px-3 py-1 rounded-full inline-block mb-3">
+                    {sparePart.specifications[0]?.value || 'Sin especificaciones'}
+                  </div>
+                <p className="text-tractor-600 font-medium mb-4">Precio: S/. {sparePart.price}</p>
                 <button
                   onClick={() => handleWhatsAppClick(sparePart.name)}
                   className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-300 shadow-md hover:shadow-lg"
