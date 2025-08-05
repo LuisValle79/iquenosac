@@ -184,13 +184,7 @@ const MachineGallery: React.FC<MachineGalleryProps> = ({ searchQuery }) => {
                         Cotizar
                       </span>
                     </button>
-                    <button 
-                      onClick={() => handleViewDetails(product)}
-                      className="p-2 text-tractor-400 hover:text-tractor-600 
-                               transition-colors hover:bg-gray-100 rounded-full"
-                    >
-                      <Eye className="h-6 w-6" />
-                    </button>
+
                   </div>
                 </div>
               </div>

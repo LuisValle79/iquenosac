@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, Phone, Mail, MapPin, ChevronRight, Users, Building, Target, Search } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Phone, Mail, MapPin, ChevronRight, Users, Building, Target } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import MachineGallery from './components/MachineGallery';
 import SparePartsGallery from './components/SparePartsGallery';
@@ -22,7 +22,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery] = useState('');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -80,6 +80,22 @@ function App() {
       transition: { duration: 0.4, ease: 'easeOut' },
     },
   };
+
+  // Efecto para deshabilitar el clic derecho con mensaje personalizado
+  useEffect(() => {
+    const disableRightClick = (e: MouseEvent) => {
+      e.preventDefault();
+      setAlertMessage('El clic derecho está deshabilitado por seguridad.');
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000); // Ocultar mensaje después de 3 segundos
+    };
+
+    document.addEventListener('contextmenu', disableRightClick);
+
+    return () => {
+      document.removeEventListener('contextmenu', disableRightClick);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-tractor-50">

@@ -19,7 +19,7 @@ interface SparePartsGalleryProps {
   searchQuery: string;
 }
 
-const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) => {
+const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ }) => {
   const [spareParts, setSpareParts] = useState<SparePart[]>([]);
   const [selectedSparePart, setSelectedSparePart] = useState<SparePart | null>(null);
   const [loading, setLoading] = useState(true);
