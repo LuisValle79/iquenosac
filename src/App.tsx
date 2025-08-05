@@ -48,7 +48,7 @@ function App() {
   const sectionVariants = {
     hidden: (index: number) => ({
       opacity: 0,
-      x: index % 2 === 0 ? -100 : 100, // Alterna izquierda (-100) y derecha (100)
+      x: index % 2 === 0 ? -100 : 100,
       scale: 0.95,
     }),
     visible: {
@@ -56,9 +56,9 @@ function App() {
       x: 0,
       scale: 1,
       transition: {
-        delay: 0.1, // Retraso mínimo entre secciones
+        delay: 0.1,
         duration: 0.6,
-        ease: [0.43, 0.13, 0.23, 0.96], // Efecto de ease personalizado
+        ease: [0.43, 0.13, 0.23, 0.96],
       },
     },
   };
@@ -70,7 +70,7 @@ function App() {
       opacity: 1,
       y: 0,
       transition: {
-        delay: index * 0.05, // Retraso mínimo para cards
+        delay: index * 0.05,
         duration: 0.5,
         ease: [0.43, 0.13, 0.23, 0.96],
       },
@@ -82,13 +82,31 @@ function App() {
     },
   };
 
+  // Animación para el número de teléfono
+  const phoneVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+    hover: {
+      scale: 1.05,
+      color: '#FBBF24', // machinery-200
+      transition: { duration: 0.3, ease: 'easeOut' },
+    },
+  };
+
   // Efecto para deshabilitar el clic derecho con mensaje personalizado
   useEffect(() => {
     const disableRightClick = (e: MouseEvent) => {
       e.preventDefault();
       setAlertMessage('El clic derecho está deshabilitado por seguridad.');
       setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 3000); // Ocultar mensaje después de 3 segundos
+      setTimeout(() => setShowAlert(false), 3000);
     };
 
     document.addEventListener('contextmenu', disableRightClick);
@@ -116,27 +134,46 @@ function App() {
     <div className="min-h-screen bg-tractor-50">
       {/* Navigation */}
       <nav className="bg-tractor-200 text-white fixed w-full z-50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="ml-[-10px] transform transition-all duration-300 hover:scale-105">
-              <Logo height={60} className="shadow-md rounded-lg" />
+              <Logo height={55} className="shadow-md rounded-lg" />
             </div>
-           
+{/* Número con título encima */}
+<motion.div
+  className="flex flex-col items-start space-y-1"
+  variants={phoneVariants}
+  initial="hidden"
+  animate="visible"
+  whileHover="hover"
+>
+  <h3 className="text-sm text-machinery-200 font-semibold">Llámanos al:</h3>
+
+  <div className="flex items-center space-x-2">
+    <Phone className="h-5 w-5 text-machinery-200" />
+    <a
+      href="tel:+51963792905"
+      className="text-machinery-50 font-semibold text-sm sm:text-base hover:text-machinery-200 transition duration-300"
+    >
+      +51 963 792 905
+    </a>
+  </div>
+</motion.div>
+
             {/* Desktop Navigation and Search */}
             <div className="hidden md:flex items-center space-x-3 mr-[-10px]">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1">
                 {menuItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="hover:text-machinery-200 px-4 py-2 rounded-md transition duration-300 hover:bg-tractor-300/50"
+                    className="hover:text-machinery-200 px-3 py-2 rounded-md transition duration-300 hover:bg-tractor-300/50"
                   >
                     {item.label}
                   </a>
                 ))}
               </div>
             </div>
-
             {/* Mobile menu button */}
             <motion.div
               className="md:hidden"
@@ -150,7 +187,6 @@ function App() {
             </motion.div>
           </div>
         </div>
-
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
@@ -163,7 +199,6 @@ function App() {
             >
               <div className="flex justify-center items-center mb-8">
                 <Logo height={55} />
-
               </div>
               <div className="space-y-4">
                 {menuItems.map((item) => (
@@ -179,7 +214,7 @@ function App() {
                 <div className="pt-6 border-t border-tractor-300">
                   <a
                     href="#contacto"
-                    className="block px-4 py-3 bg-machinery-200 text-tractor-400 rounded-lg text-center font-semibold hover:bg-machinery-300 transition-colors duration-100"
+                    className="block px-4 py-3 bg-machinery-200 text-tractor-400 rounded-lg text-center font-semibold hover:bg-machinery-300 transition duration-100"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Contáctanos
@@ -190,7 +225,6 @@ function App() {
           </div>
         )}
       </nav>
-
       {/* Hero Section */}
       <motion.section
         id="inicio"
@@ -203,7 +237,6 @@ function App() {
       >
         <HeroCarousel />
       </motion.section>
-
       {/* About Us Section */}
       <motion.section
         id="quienes-somos"
@@ -350,7 +383,6 @@ function App() {
           </div>
         </div>
       </motion.section>
-
       {/* Services Section */}
       <motion.section
         className="py-24 bg-gradient-to-b from-tractor-50 to-tractor-100"
@@ -412,7 +444,6 @@ function App() {
           </div>
         </div>
       </motion.section>
-
       {/* Products Section */}
       <motion.section
         id="maquinarias"
@@ -448,7 +479,6 @@ function App() {
           <MachineGallery searchQuery={searchQuery} />
         </div>
       </motion.section>
-
       {/* Spare Parts Section */}
       <motion.section
         id="repuestos"
@@ -483,7 +513,6 @@ function App() {
           <SparePartsGallery searchQuery={searchQuery} />
         </div>
       </motion.section>
-
       {/* CTA Section */}
       <motion.section
         className="py-16 bg-tractor-200"
@@ -529,7 +558,6 @@ function App() {
           </motion.a>
         </div>
       </motion.section>
-
       {/* Video Gallery Section */}
       <motion.section
         id="videos"
@@ -554,7 +582,6 @@ function App() {
           <VideoGallery />
         </div>
       </motion.section>
-
       {/* Testimonials Section */}
       <motion.section
         id="testimonios"
@@ -579,7 +606,6 @@ function App() {
           <Testimonials />
         </div>
       </motion.section>
-
       {/* Advisors Section */}
       <motion.section
         id="asesores"
@@ -604,7 +630,6 @@ function App() {
           <Advisors />
         </div>
       </motion.section>
-
       {/* Clients Section */}
       <motion.section
         className="py-20 bg-white"
@@ -616,7 +641,6 @@ function App() {
       >
         <Clients />
       </motion.section>
-
       {/* Contact Section */}
       <motion.section
         id="contacto"
@@ -652,7 +676,7 @@ function App() {
                 viewport={{ once: true }}
               >
                 <Phone className="h-6 w-6 text-tractor-200 mr-3" />
-                <span>+51 958 840 599</span>
+                <span>+51 963 792 905</span>
               </motion.div>
               <motion.div
                 className="flex items-center p-4 bg-white rounded-lg shadow-sm"
@@ -689,7 +713,6 @@ function App() {
           </div>
         </div>
       </motion.section>
-
       {/* Footer */}
       <motion.footer
         className="bg-tractor-200 text-white py-12"
@@ -723,7 +746,6 @@ function App() {
                 Expertos en soluciones metalúrgicas industriales.
               </motion.p>
             </div>
-
             <div>
               <motion.p
                 className="text-tractor-50"
@@ -745,9 +767,8 @@ function App() {
                 viewport={{ once: true }}
               >
                 <img src={image5} alt="Cámara de Comercio de Lima" className="h-30 w-auto" />
-              </motion.h3>             
+              </motion.h3>
             </div>
-
             <div>
               <motion.h3
                 className="text-xl font-bold mb-4"
@@ -817,7 +838,6 @@ function App() {
           </div>
         </div>
       </motion.footer>
-
       {/* Alert Component */}
       {showAlert && (
         <Alert message={alertMessage} onClose={() => setShowAlert(false)} />
