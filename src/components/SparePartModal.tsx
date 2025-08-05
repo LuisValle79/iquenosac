@@ -19,26 +19,26 @@ interface SparePartModalProps {
 const SparePartModal: React.FC<SparePartModalProps> = ({ sparePart, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-2xl transform transition-all duration-300">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-xl p-6 w-full max-w-2xl shadow-2xl transform transition-all duration-300">
+        <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-tractor-700">{sparePart.name}</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-tractor-600 transition-colors duration-300">
             <X className="h-6 w-6" />
           </button>
         </div>
-        <div className="mb-4">
-          <img
-            src={sparePart.image_url || 'https://via.placeholder.com/300'}
-            alt={sparePart.name}
-            className="w-full h-48 object-cover rounded-lg mb-4"
-            onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/300')}
-          />
-                    <h3 className="text-lg font-semibold text-tractor-700 mb-2">Descripcion:</h3>
-          <ul className="list-disc pl-5 text-gray-600"></ul>
+        <div className="mb-6">
+          <div className="w-full h-64 bg-gray-100 rounded-lg overflow-hidden shadow-md flex items-center justify-center">
+            <img
+              src={sparePart.image_url || 'https://via.placeholder.com/300'}
+              alt={sparePart.name}
+              className="max-h-full max-w-full object-contain p-4"
+              onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/300')}
+            />
+          </div>
+          <h3 className="text-lg font-semibold text-tractor-700 mt-4 mb-2">Descripción:</h3>
           <p className="text-gray-600 mb-4">{sparePart.description}</p>
-          
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <h3 className="text-lg font-semibold text-tractor-700 mb-2">Especificaciones</h3>
           <ul className="list-disc pl-5 text-gray-600">
             {sparePart.specifications.map((spec, index) => (

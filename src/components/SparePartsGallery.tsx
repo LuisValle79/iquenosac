@@ -24,7 +24,7 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
   const [selectedSparePart, setSelectedSparePart] = useState<SparePart | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>(''); // Estado para el término de búsqueda
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     const fetchSpareParts = async () => {
@@ -67,7 +67,6 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
     return field;
   };
 
-  // Filtrar repuestos con coincidencias parciales o mostrar todos si searchTerm está vacío
   const filteredSpareParts = searchTerm.trim() === ''
     ? spareParts
     : spareParts.filter(sparePart =>
@@ -84,12 +83,26 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
     window.open(`https://wa.me/51963792905?text=${message}`, '_blank');
   };
 
+  // Variantes de animación para las cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: index * 0.1, duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] },
+    }),
+    hover: {
+      scale: 1.05,
+      boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
+      transition: { duration: 0.3, ease: 'easeOut' },
+    },
+  };
+
   if (loading) return <div className="text-center py-10 text-tractor-600">Cargando repuestos...</div>;
   if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
 
   return (
     <>
-      {/* Buscador en tiempo real */}
       <div className="mb-8">
         <div className="relative w-full max-w-2xl mx-auto">
           <input
@@ -107,42 +120,45 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ searchQuery }) =>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-6 lg:px-8">
         {filteredSpareParts.length > 0 ? (
-          filteredSpareParts.map((sparePart) => (
+          filteredSpareParts.map((sparePart, index) => (
             <motion.div
               key={sparePart.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
-              whileHover={{ scale: 1.03, boxShadow: '0 15px 30px rgba(0,0,0,0.15)' }}
-              transition={{ duration: 0.3 }}
+              className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300"
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
+              viewport={{ once: true }}
             >
-              <div className="relative h-48 w-full">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-square">
                 <img
                   src={sparePart.image_url || 'https://via.placeholder.com/300'}
                   alt={sparePart.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain bg-gray-100 p-2"
                   onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/300')}
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <button
                     onClick={() => handleViewDetails(sparePart)}
-                    className="bg-white/90 text-tractor-600 px-4 py-2 rounded-lg font-semibold hover:bg-white transition-colors duration-300 shadow-md hover:shadow-lg"
+                    className="bg-white/90 text-tractor-600 px-4 py-2 rounded-lg font-semibold hover:bg-white transition-colors duration-300 shadow-md hover:shadow-lg flex items-center"
                   >
-                    <Eye className="h-5 w-5 mr-2 inline" /> Ver Detalles
+                    <Eye className="h-5 w-5 mr-2" /> Ver Detalles
                   </button>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">{sparePart.name}</h3>
                 <div className="bg-tractor-50 text-tractor-600 text-sm px-3 py-1 rounded-full inline-block mb-3">
                   {sparePart.specifications[0]?.value || 'Sin especificaciones'}
                 </div>
-                
                 <button
                   onClick={() => handleWhatsAppClick(sparePart.name)}
-                  className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-300 shadow-md hover:shadow-lg"
+                  className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-300 shadow-md hover:shadow-lg flex items-center justify-center"
                 >
-                  <FaWhatsapp className="h-5 w-5 mr-2 inline" /> Cotizar
+                  <FaWhatsapp className="h-5 w-5 mr-2" /> Cotizar
                 </button>
               </div>
             </motion.div>

@@ -10,12 +10,12 @@ import agrokrLogo from '../assets/agrovision.jpg';
 
 const Clients: React.FC = () => {
   const clientLogos = [
-    { src: novolizLogo, alt: 'Novoliz Logo' },
-    { src: pozoAltoLogo, alt: 'Pozo Alto S.A.C. Logo' },
-    { src: lxgLogo, alt: 'LXG Amazon Reforestry Fund Logo' },
-    { src: hefeiLogo, alt: 'Hefei Logo' },
-    { src: rootsLogo, alt: 'Roots Peru Logo' },
-    { src: agrokrLogo, alt: 'Agrokr Logo' },
+    { src: novolizLogo, alt: 'Grupo Andina' },
+    { src: pozoAltoLogo, alt: 'Vivero Arona' },
+    { src: lxgLogo, alt: 'HM-CLAUSE' },
+    { src: hefeiLogo, alt: 'ROOTS-PERU' },
+    { src: rootsLogo, alt: 'Agrokr' },
+    { src: agrokrLogo, alt: 'Agrovision' },
   ];
 
   return (
