@@ -58,14 +58,14 @@ const HeroCarousel: React.FC = () => {
             }`}
           >
             <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-cover bg-center"
               style={{ 
                 backgroundImage: `url(${image.url})`,
                 backgroundPosition: 'center center',
                 transform: 'scale(1.02)'
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60" />
+            <div className="absolute inset-0 " />
           </div>
         ))}
       </div>
