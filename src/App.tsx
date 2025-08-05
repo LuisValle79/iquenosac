@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Phone, Mail, MapPin, ChevronRight, Users, Building, Target } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import MachineGallery from './components/MachineGallery';
@@ -23,6 +23,7 @@ function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [searchQuery] = useState('');
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -97,6 +98,20 @@ function App() {
     };
   }, []);
 
+  // Efecto para cerrar el menú al hacer clic fuera en móviles
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMenuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <div className="min-h-screen bg-tractor-50">
       {/* Navigation */}
@@ -123,33 +138,39 @@ function App() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <motion.div
+              className="md:hidden"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
               <button onClick={toggleMenu} className="p-2 rounded-full hover:bg-tractor-300/50 transition-colors duration-300">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
-            <div className="bg-tractor-200 h-full w-3/4 max-w-sm p-6 transform transition-transform duration-300">
-              <div className="flex justify-between items-center mb-8">
-                <Logo height={40} />
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="p-2 hover:bg-tractor-300 rounded-lg transition-colors duration-300"
-                >
-                  <X className="h-6 w-6 text-white" />
-                </button>
+            <motion.div
+              ref={menuRef}
+              className="bg-tractor-200 h-full w-3/4 max-w-sm p-6 transform transition-transform duration-300"
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0, ease: 'easeOut' }}
+            >
+              <div className="flex justify-center items-center mb-8">
+                <Logo height={55} />
+
               </div>
               <div className="space-y-4">
                 {menuItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="block px-4 py-3 text-white hover:bg-tractor-300 rounded-lg transition-colors duration-300"
+                    className="block px-3 py-3 text-center hover:bg-tractor-300 rounded-lg transition-colors duration-300"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
@@ -158,14 +179,14 @@ function App() {
                 <div className="pt-6 border-t border-tractor-300">
                   <a
                     href="#contacto"
-                    className="block px-4 py-3 bg-machinery-200 text-tractor-400 rounded-lg text-center font-semibold hover:bg-machinery-300 transition-colors duration-300"
+                    className="block px-4 py-3 bg-machinery-200 text-tractor-400 rounded-lg text-center font-semibold hover:bg-machinery-300 transition-colors duration-100"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Contáctanos
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         )}
       </nav>
