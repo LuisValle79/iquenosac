@@ -141,13 +141,13 @@ function App() {
             </div>
 {/* Número con título encima */}
 <motion.div
-  className="flex flex-col items-start space-y-1"
+  className="flex flex-col items-start space-y-1 animate-pulse"
   variants={phoneVariants}
   initial="hidden"
   animate="visible"
   whileHover="hover"
 >
-  <h3 className="text-sm text-machinery-200 font-semibold">Llámanos al:</h3>
+  <h3 className="text-sm text-machinery-200 font-semibold">Información de Contacto:</h3>
 
   <div className="flex items-center space-x-2">
     <Phone className="h-5 w-5 text-machinery-200" />
@@ -515,14 +515,14 @@ function App() {
       </motion.section>
       {/* CTA Section */}
       <motion.section
-        className="py-16 bg-tractor-200"
+        className="py-16 bg-tractor-200 "
         custom={5}
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="max-w-7xl mx-auto px-4 text-center">
+        <div className="max-w-7xl mx-auto px-4 text-center animate-pulse">
           <motion.h2
             className="text-3xl font-extrabold text-white mb-6"
             custom={0}
@@ -722,7 +722,7 @@ function App() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl text-center mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <motion.h3
