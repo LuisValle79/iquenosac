@@ -3,6 +3,8 @@ import { Play, X } from 'lucide-react';
 import image1 from '../assets/encamadora_integral.jpg';
 import image2 from '../assets/Desbrozadoradehojapapayocamote.jpg';
 import image3 from '../assets/Cosechadora-de-papasycamote-nueva-presentacion.jpg';
+import image4 from '../assets/picadoraestacionaria_chala4tn.jpg';
+import image5 from '../assets/abonadora_hidraulica.jpg';
 
 const videos = [
   {
@@ -25,6 +27,21 @@ const videos = [
     description: 'Cosechadora especializada para papa y camote, ideal para agilizar tu cosecha. Extrae los tubérculos sin dañarlos y los separa eficientemente del suelo. Aumenta tu productividad y reduce el trabajo manual en el campo.',
     thumbnail: image3,
     videoUrl: 'https://www.youtube.com/embed/TQa2QJd5V6Q'
+  },
+  {
+    id: 4,
+    title: 'Picadora de chala - FSI SAC EL IQUEÑO- PERÚ',
+    description: 'La picadora de chala es una máquina diseñada para triturar residuos agrícolas como la chala de maíz, facilitando su uso como alimento para ganado o compostaje. Su estructura robusta y eficiencia de corte optimizan el trabajo en el campo.',
+    thumbnail: image4,
+    videoUrl: 'https://www.youtube.com/embed/16TeUur6h4I?si=_TASIpou40ueYkJX'
+  },
+  {
+    id: 5,
+    title: 'Cultivadora-Abonadora con sistema hidráulico - FSI SAC EL IQUEÑO- PERÚ',
+    description: 'Herramienta agrícola versátil que permite remover la tierra y aplicar abono simultáneamente. Gracias a su sistema hidráulico, ofrece mayor precisión y facilidad de uso. Es ideal para mejorar la fertilidad del suelo y optimizar el cultivo. Diseñada para aumentar la eficiencia y reducir el esfuerzo en labores agrícolas.',
+    thumbnail: image5,
+    videoUrl: 'https://www.youtube.com/embed/wxxXzlx5HpM?si=FYv2xYeAT59y6_hm'
+    
   }
 ];
 
