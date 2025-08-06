@@ -249,7 +249,7 @@ function App() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
-            className="text-3xl font-extrabold text-center mb-12 text-tractor-200 tracking-tight"
+            className="text-3xl font-extrabold text-center mb-6 text-tractor-200 tracking-tight"
             custom={0}
             variants={cardVariants}
             initial="hidden"
@@ -258,6 +258,16 @@ function App() {
           >
             Quiénes Somos
           </motion.h2>
+          <motion.h1
+            className=" font-bold text-center  text-tractor-200"
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="none"
+            viewport={{ once: true }}
+          >
+            Implementos Agrícolas FSI - Soluciones para el Agro Peruano
+          </motion.h1>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <motion.h3
