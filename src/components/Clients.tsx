@@ -20,11 +20,11 @@ const Clients: React.FC = () => {
 
   return (
     <section className="py-20 bg-tractor-200 text-white">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-4xl sm:text-5xl font-extrabold mb-6">
+      <div className="max-w-7xl mx-auto px-4 text-center ">
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 animate-pulse">
           Nuestros Clientes
         </h2>
-        <p className="text-lg sm:text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg sm:text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed animate-pulse">
           Brindamos soluciones integrales en el sector agroindustrial e industria en general.
           Innovamos, diseñamos y fabricamos repuestos, implementos y maquinaria agrícola a la medida.
         </p>
@@ -35,7 +35,7 @@ const Clients: React.FC = () => {
             {[...clientLogos, ...clientLogos].map((logo, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 bg-white rounded-xl shadow-xl p-4 w-40 h-28 flex items-center justify-center hover:scale-105 transition-transform duration-300"
+                className="flex-shrink-0 bg-white rounded- shadow-xl p-4 w-40 h-28 flex items-center justify-center hover:scale-105 transition-transform duration-300"
               >
                 <img
                   src={logo.src}
@@ -55,7 +55,7 @@ const Clients: React.FC = () => {
         {`
           @keyframes marquee {
             0%   { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-70%); }
           }
 
           .animate-marquee {
