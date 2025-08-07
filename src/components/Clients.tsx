@@ -7,6 +7,9 @@ import lxgLogo from '../assets/HM-CLAUSE.jpg';
 import hefeiLogo from '../assets/ROOTS-PERU.jpg';
 import rootsLogo from '../assets/agrokr.jpg';
 import agrokrLogo from '../assets/agrovision.jpg';
+import avoamericaLogo from '../assets/avoamerica3.png';
+import fallcreekLogo from '../assets/fallcreek.png';
+import natuperuLogo from '../assets/natuperu.png';
 
 const Clients: React.FC = () => {
   const clientLogos = [
@@ -16,6 +19,9 @@ const Clients: React.FC = () => {
     { src: hefeiLogo, alt: 'ROOTS-PERU' },
     { src: rootsLogo, alt: 'Agrokr' },
     { src: agrokrLogo, alt: 'Agrovision' },
+    { src: avoamericaLogo, alt: 'Avoamerica' },
+    { src: fallcreekLogo, alt: 'Fall Creek' },
+    { src: natuperuLogo, alt: 'NatuPerú' }
   ];
 
   return (
@@ -35,7 +41,7 @@ const Clients: React.FC = () => {
             {[...clientLogos, ...clientLogos].map((logo, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 bg-white rounded- shadow-xl p-4 w-40 h-28 flex items-center justify-center hover:scale-105 transition-transform duration-300"
+                className="flex-shrink-0 bg-white rounded-xl shadow-xl p-4 w-40 h-28 flex items-center justify-center hover:scale-105 transition-transform duration-300"
               >
                 <img
                   src={logo.src}
@@ -55,7 +61,7 @@ const Clients: React.FC = () => {
         {`
           @keyframes marquee {
             0%   { transform: translateX(0%); }
-            100% { transform: translateX(-70%); }
+            100% { transform: translateX(-50%); }
           }
 
           .animate-marquee {
