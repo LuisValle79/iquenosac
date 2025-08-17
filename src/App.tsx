@@ -100,21 +100,39 @@ function App() {
     },
   };
 
-  // Efecto para deshabilitar el clic derecho con mensaje personalizado
-  useEffect(() => {
-    const disableRightClick = (e: MouseEvent) => {
+// Efecto para deshabilitar clic derecho, F12 y Ctrl+U
+useEffect(() => {
+  // Bloquear clic derecho
+  const disableRightClick = (e: MouseEvent) => {
+    e.preventDefault();
+  };
+
+  // Bloquear F12 y Ctrl+U
+  const disableKeys = (e: KeyboardEvent) => {
+    // F12
+    if (e.key === "F12") {
       e.preventDefault();
-      setAlertMessage('El clic derecho está deshabilitado por seguridad.');
-      setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 3000);
-    };
+      
+    }
 
-    document.addEventListener('contextmenu', disableRightClick);
+    // Ctrl + U
+    if (e.ctrlKey && e.key.toLowerCase() === "u") {
+      e.preventDefault();
+      
+    }
+  };
 
-    return () => {
-      document.removeEventListener('contextmenu', disableRightClick);
-    };
-  }, []);
+  // Eventos
+  document.addEventListener("contextmenu", disableRightClick);
+  document.addEventListener("keydown", disableKeys);
+
+  // Cleanup
+  return () => {
+    document.removeEventListener("contextmenu", disableRightClick);
+    document.removeEventListener("keydown", disableKeys);
+  };
+}, []);
+
 
   // Efecto para cerrar el menú al hacer clic fuera en móviles
   useEffect(() => {

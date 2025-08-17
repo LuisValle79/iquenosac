@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { FaWhatsapp, FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
 
 import portada1 from '../assets/portada1.jpg';
 import portada2 from '../assets/portada2.jpg';
 import portada3 from '../assets/portada3.jpg';
 import portada4 from "../assets/Abonadora-Fertilizadora-Hidraulica.jpg";
-
-
 
 const images = [
   { url: portada1, title: 'Implementos Agrícolas de Alta Calidad' },
@@ -21,7 +20,6 @@ const HeroCarousel: React.FC = () => {
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
-
     if (isAutoPlaying) {
       interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -58,14 +56,13 @@ const HeroCarousel: React.FC = () => {
             }`}
           >
             <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-cover bg-center"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ 
                 backgroundImage: `url(${image.url})`,
                 backgroundPosition: 'center center',
                 transform: 'scale(1.02)'
               }}
             />
-            <div className="absolute inset-0 " />
           </div>
         ))}
       </div>
@@ -80,17 +77,17 @@ const HeroCarousel: React.FC = () => {
             <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
               Especialistas en maquinaria agrícola y soluciones para el campo desde hace más de 30 años
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center max-w-[280px] sm:max-w-none mx-auto sm:mx-0">
+            <div className="flex flex-col sm:flex-row gap-4 items-center max-w-[280px] sm:max-w-none mx-auto sm:mx-0">
               <a 
                 href="#contacto"
-                className="w-full sm:w-auto bg-machinery-200 text-tractor-400 px-4 sm:px-6 py-3 sm:py-2.5 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
+                className="w-full sm:w-auto bg-machinery-200 text-tractor-400 px-6 py-3 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
               >
                 <span>Contáctanos</span>
                 <ChevronRight className="ml-2 h-4 w-4" />
               </a>
               <a 
                 href="#maquinarias"
-                className="w-full sm:w-auto bg-tractor-200 text-white px-4 sm:px-6 py-3 sm:py-2.5 rounded-lg font-semibold hover:bg-tractor-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
+                className="w-full sm:w-auto bg-tractor-200 text-white px-6 py-3 rounded-lg font-semibold hover:bg-tractor-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
               >
                 <span>Ver Productos</span>
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -99,7 +96,7 @@ const HeroCarousel: React.FC = () => {
                 href="https://www.implementosagricolasfsi.com/images/catalogo.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-machinery-200 text-tractor-400 px-4 sm:px-6 py-3 sm:py-2.5 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
+                className="w-full sm:w-auto bg-machinery-200 text-tractor-400 px-6 py-3 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
               >
                 <span>Abrir Catálogo</span>
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -113,9 +110,9 @@ const HeroCarousel: React.FC = () => {
       <div className="absolute inset-y-0 left-0 flex items-center">
         <button
           onClick={goToPrevious}
-          className="bg-black bg-opacity-50 text-white p-1 sm:p-2 m-2 sm:m-4 rounded-full hover:bg-opacity-75 transition-all"
+          className="bg-black bg-opacity-50 text-white p-2 m-4 rounded-full hover:bg-opacity-75 transition-all"
         >
-          <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
+          <ChevronLeft className="h-6 w-6" />
         </button>
       </div>
       <div className="absolute inset-y-0 right-0 flex items-center">
@@ -142,6 +139,25 @@ const HeroCarousel: React.FC = () => {
             />
           ))}
         </div>
+      </div>
+
+      {/* Íconos sociales flotantes */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-50">
+        <a href="https://wa.me/51958840599" target="_blank" rel="noopener noreferrer">
+          <FaWhatsapp className="text-green-500 h-8 w-8 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://www.facebook.com/implementosagricolas.lima" target="_blank" rel="noopener noreferrer">
+          <FaFacebook className="text-blue-600 h-8 w-8 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://www.instagram.com/fsi.implementos.agricolas/" target="_blank" rel="noopener noreferrer">
+          <FaInstagram className="text-pink-500 h-8 w-8 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://www.tiktok.com/@www.fsi.com" target="_blank" rel="noopener noreferrer">
+          <FaTiktok className="text-black h-7 w-7 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://www.youtube.com/@fsisaceliqueno" target="_blank" rel="noopener noreferrer">
+          <FaYoutube className="text-red-600 h-7 w-7 hover:scale-110 transition-transform" />
+        </a>
       </div>
     </div>
   );
