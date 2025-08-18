@@ -80,7 +80,7 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ }) => {
 
   const handleWhatsAppClick = (sparePartName: string) => {
     const message = encodeURIComponent(`Hola, me gustaría solicitar una cotización para el repuesto: ${sparePartName}`);
-    window.open(`https://wa.me/51963792905?text=${message}`, '_blank');
+    window.open(`https://wa.me/51958840599?text=${message}`, '_blank');
   };
 
   // Variantes de animación para las cards

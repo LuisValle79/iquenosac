@@ -170,10 +170,10 @@ useEffect(() => {
   <div className="flex items-center space-x-2">
     <Phone className="h-5 w-5 text-machinery-200" />
     <a
-      href="tel:+51963792905"
+      href="tel:+51958840599"
       className="text-machinery-50 font-semibold text-sm sm:text-base hover:text-machinery-200 transition duration-300"
     >
-      +51 963 792 905
+      +51 958 840 599
     </a>
   </div>
 </motion.div>
@@ -704,7 +704,7 @@ useEffect(() => {
                 viewport={{ once: true }}
               >
                 <Phone className="h-6 w-6 text-tractor-200 mr-3" />
-                <span>+51 963 792 905</span>
+                <span>+51 958 840 599</span>
               </motion.div>
               <motion.div
                 className="flex items-center p-4 bg-white rounded-lg shadow-sm"
