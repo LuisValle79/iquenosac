@@ -17,13 +17,28 @@ import image2 from './assets/portada2.jpg';
 import image3 from './assets/portada3.jpg';
 import image4 from './assets/Abonadora-Fertilizadora-Hidraulica.jpg';
 import image5 from './assets/camara-comercio-lima.png';
+import { Bot } from "lucide-react"; // 👈 importa el icono de robot
+
+// Extiende la interfaz Window para incluir Chatbase
+declare global {
+  interface Window {
+    chatbase?: {
+      (method: string, ...args: any[]): void;
+      q?: any[];
+      getState?: () => string;
+    };
+  }
+}
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [isChatbotLoaded, setIsChatbotLoaded] = useState(false);
+  const [chatbotError, setChatbotError] = useState<string | null>(null);
   const [alertMessage, setAlertMessage] = useState('');
   const [searchQuery] = useState('');
   const menuRef = useRef<HTMLDivElement>(null);
+  const scriptRef = useRef<HTMLScriptElement | null>(null);  // Ref para el script del chatbot
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -32,6 +47,184 @@ function App() {
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 5000);
   };
+
+
+// Cargar el script de Chatbase
+  useEffect(() => {
+    // Inicializar la cola de comandos de Chatbase
+    if (!window.chatbase || window.chatbase.getState?.() !== 'initialized') {
+      window.chatbase = (...args) => {
+        if (window.chatbase && !window.chatbase.q) window.chatbase.q = [];
+        window.chatbase?.q?.push(args);
+      };
+      window.chatbase = new Proxy(window.chatbase, {
+        get(target, prop) {
+          if (prop === 'q') return target.q;
+          if (typeof prop === 'string') {
+            return (...args: any[]) => target(prop, ...args);
+          }
+          return undefined;
+        },
+      });
+    }
+
+    // Verificar si el script ya está cargado
+    if (!document.querySelector("script[id='VFvg22QWfY7w7D_axwc-m']")) {
+      const onLoad = () => {
+        const script = document.createElement('script');
+        script.src = 'https://www.chatbase.co/embed.min.js';
+        script.id = 'VFvg22QWfY7w7D_axwc-m';
+        script.setAttribute('domain', 'www.chatbase.co');
+        script.defer = true;
+        script.async = true; // Agregar async para mejor rendimiento
+
+        script.onload = () => {
+          setIsChatbotLoaded(true);
+          // Deshabilitar comportamientos automáticos del chatbot
+          setTimeout(() => {
+            if (window.chatbase) {
+              try {
+                window.chatbase('close'); // Asegurar que esté cerrado inicialmente
+              } catch (error) {
+                console.warn('Chatbot initialization warning:', error);
+              }
+            }
+          }, 100);
+        };
+
+        script.onerror = () => {
+          setChatbotError('Error al cargar el script del chatbot. Verifica tu conexión o el ID.');
+        };
+
+        document.body.appendChild(script);
+        scriptRef.current = script;
+      };
+
+      if (document.readyState === 'complete') {
+        onLoad();
+      } else {
+        window.addEventListener('load', onLoad);
+        return () => window.removeEventListener('load', onLoad);
+      }
+    }
+
+    // Cleanup al desmontar
+    return () => {
+      if (scriptRef.current && scriptRef.current.parentNode) {
+        scriptRef.current.parentNode.removeChild(scriptRef.current);
+      }
+      setIsChatbotLoaded(false);
+    };
+  }, []);
+
+  // Ocultar el ícono flotante nativo de Chatbase y ajustar el tamaño del widget en móviles
+  useEffect(() => {
+    if (isChatbotLoaded) {
+      const style = document.createElement('style');
+      style.innerHTML = `
+        #chatbase-bubble-button, .chatbase-bubble-button {
+          display: none !important;
+        }
+        #chatbase-bubble-window {
+          z-index: 9999 !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+          border-radius: 12px !important;
+          position: fixed !important;
+          transform: translateZ(0) !important;
+          will-change: transform !important;
+        }
+        @media (max-width: 640px) {
+          #chatbase-bubble-window {
+            width: 90% !important;
+            max-width: 360px !important;
+            height: 70vh !important;
+            bottom: 80px !important;
+            left: 50% !important;
+            transform: translateX(-50%) translateZ(0) !important;
+            right: auto !important;
+          }
+        }
+        @media (min-width: 641px) {
+          #chatbase-bubble-window {
+            width: 400px !important;
+            height: 600px !important;
+            bottom: 80px !important;
+            right: 20px !important;
+            left: auto !important;
+            transform: translateZ(0) !important;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+      return () => {
+        document.head.removeChild(style);
+      };
+    }
+  }, [isChatbotLoaded]);
+
+  // Mostrar errores del chatbot
+  useEffect(() => {
+    if (chatbotError) {
+      setAlertMessage(chatbotError);
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 5000);
+    }
+  }, [chatbotError]);
+
+  // Cerrar el chatbot al hacer clic fuera - VERSION SIMPLIFICADA
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const chatWindow = document.getElementById('chatbase-bubble-window');
+      const chatButton = document.getElementById('agroChatButton');
+      const target = event.target as HTMLElement;
+      
+      // Solo ejecutar si el chatbot está abierto y visible
+      if (
+        isChatbotLoaded &&
+        chatWindow &&
+        chatWindow.style.display !== 'none' &&
+        !chatWindow.contains(target) &&
+        chatButton &&
+        !chatButton.contains(target)
+      ) {
+        try {
+          if (window.chatbase) {
+            window.chatbase('close');
+          }
+        } catch (error) {
+          console.warn('Error cerrando chatbot:', error);
+        }
+      }
+    };
+
+    // Solo agregar el listener si el chatbot está cargado
+    if (isChatbotLoaded) {
+      // Usar timeout para evitar conflictos inmediatos
+      setTimeout(() => {
+        document.addEventListener('click', handleClickOutside, { passive: true });
+      }, 100);
+      
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }
+  }, [isChatbotLoaded]);
+
+  // Función para abrir el chatbot - VERSIÓN SIMPLIFICADA
+  const openChatbot = () => {
+    if (isChatbotLoaded && window.chatbase) {
+      try {
+        window.chatbase('open');
+      } catch (error) {
+        setChatbotError('No se pudo abrir el chatbot. Intenta de nuevo.');
+      }
+    } else {
+      setChatbotError('El chatbot aún no está cargado. Por favor, espera un momento.');
+    }
+  };
+
+
+
 
   const menuItems = [
     { href: '#inicio', label: 'Inicio' },
@@ -100,7 +293,7 @@ function App() {
     },
   };
 
-// Efecto para deshabilitar clic derecho, F12 y Ctrl+U
+// SOLO bloquear clic derecho, F12 y Ctrl+U - SIN otros event listeners
 useEffect(() => {
   // Bloquear clic derecho
   const disableRightClick = (e: MouseEvent) => {
@@ -109,20 +302,15 @@ useEffect(() => {
 
   // Bloquear F12 y Ctrl+U
   const disableKeys = (e: KeyboardEvent) => {
-    // F12
     if (e.key === "F12") {
       e.preventDefault();
-      
     }
-
-    // Ctrl + U
     if (e.ctrlKey && e.key.toLowerCase() === "u") {
       e.preventDefault();
-      
     }
   };
 
-  // Eventos
+  // Solo eventos necesarios
   document.addEventListener("contextmenu", disableRightClick);
   document.addEventListener("keydown", disableKeys);
 
@@ -137,7 +325,9 @@ useEffect(() => {
   // Efecto para cerrar el menú al hacer clic fuera en móviles
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isMenuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      const target = event.target as HTMLElement;
+      
+      if (isMenuOpen && menuRef.current && !menuRef.current.contains(target)) {
         setIsMenuOpen(false);
       }
     };
@@ -149,13 +339,13 @@ useEffect(() => {
   }, [isMenuOpen]);
 
   return (
-    <div className="min-h-screen bg-tractor-50">
+    <div className="min-h-screen bg-tractor-50 overflow-x-hidden">
       {/* Navigation */}
       <nav className="bg-tractor-200 text-white fixed w-full z-50 shadow-lg">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="ml-[-10px] transform transition-all duration-300 hover:scale-105">
-              <Logo height={55} className="shadow-md rounded-lg" />
+            <div className="ml-[0px] transform transition-all duration-300 hover:scale-105">
+              <Logo height={50}  />
             </div>
 {/* Número con título encima */}
 <motion.div
@@ -870,6 +1060,72 @@ useEffect(() => {
       {showAlert && (
         <Alert message={alertMessage} onClose={() => setShowAlert(false)} />
       )}
+
+<motion.div
+  className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9000] pointer-events-none"
+  style={{
+    transform: 'translateZ(0)',
+    willChange: 'transform',
+    position: 'fixed',
+    right: '1rem',
+    bottom: '1rem'
+  }}
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+>
+  {/* Tooltip con el texto */}
+  <motion.div
+    className="absolute -top-12 right-0 bg-gradient-to-r from-green-600 to-emerald-500 
+               text-white text-xs sm:text-sm font-semibold px-3 py-2 
+               rounded-xl shadow-lg whitespace-nowrap"
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 0.3, duration: 0.6 }}
+  >
+    🤖 Soy Iqueñobot, tu asistente virtual
+  </motion.div>
+
+  {/* Botón flotante - VERSIÓN SIMPLIFICADA */}
+  <motion.button
+    id="agroChatButton"
+    onClick={openChatbot}
+    type="button"
+    className="relative bg-gradient-to-r from-green-600 to-green-500 
+               text-white rounded-full p-4 sm:p-5 shadow-lg flex 
+               items-center justify-center pointer-events-auto"
+    initial={{ scale: 1 }}
+    animate={{
+      scale: [1, 1.1, 1],
+      boxShadow: [
+        "0 0 10px rgba(16, 185, 129, 0.4)",
+        "0 0 25px rgba(16, 185, 129, 0.6)",
+        "0 0 10px rgba(16, 185, 129, 0.4)"
+      ]
+    }}
+    transition={{
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+    whileHover={{
+      scale: 1.2,
+      rotate: 5,
+      boxShadow: "0 0 30px rgba(16,185,129,0.8)"
+    }}
+    whileTap={{
+      scale: 0.9,
+      rotate: -5
+    }}
+    title="Habla con nuestro asistente agrícola"
+  >
+    <Bot className="h-7 w-7" />
+  </motion.button>
+</motion.div>
+
+
+
+      
     </div>
   );
 }
