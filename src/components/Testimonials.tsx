@@ -1,7 +1,7 @@
 import React from 'react';
 import imagelorena from '../assets/lorena.png';
 import imagemaicol from '../assets/maicol.png';
-import imagemanzo from '../assets/manzo.png';
+import imagemanzo from '../assets/richiboy.jpg';
 
 const testimonials = [
   {
@@ -21,8 +21,8 @@ const testimonials = [
   {
     id: 3,
     name: 'Jorge Mendoza',
-    company: 'Constructora del Norte',
-    content: 'Su experiencia en metalistería es incomparable. Han sido un socio clave en nuestros proyectos de construcción.',
+    company: 'Agricola del Norte',
+    content: 'Su conocimiento y experiencia en soluciones para el sector agrícola son excepcionales. Gracias a sus implementos de alta calidad, hemos optimizado nuestras labores en campo, logrando mayor eficiencia y mejores resultados en cada campaña.',
     image: imagemanzo
   }
 ];
