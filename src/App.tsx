@@ -344,8 +344,8 @@ useEffect(() => {
       <nav className="bg-tractor-200 text-white fixed w-full z-50 shadow-lg">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="ml-[0px] transform transition-all duration-300 hover:scale-105">
-              <Logo height={50}  />
+            <div className="ml-[0px]">
+              <Logo height={50} showText={true} variant="navbar" />
             </div>
 {/* Número con título encima */}
 <motion.div
@@ -406,7 +406,7 @@ useEffect(() => {
               transition={{ duration: 0, ease: 'easeOut' }}
             >
               <div className="flex justify-center items-center mb-8">
-                <Logo height={55} />
+                <Logo height={60} showText={true} variant="navbar" />
               </div>
               <div className="space-y-4">
                 {menuItems.map((item) => (
@@ -943,16 +943,16 @@ useEffect(() => {
         <div className="max-w-7xl text-center mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <motion.h3
-                className="text-xl font-bold mb-4 flex items-center"
+              <motion.div
+                className="flex justify-center mb-4"
                 custom={0}
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <Logo height={50} />
-              </motion.h3>
+                <Logo height={55} showText={true} variant="footer" />
+              </motion.div>
               <motion.p
                 className="text-tractor-50"
                 custom={1}
