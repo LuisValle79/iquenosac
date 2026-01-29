@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Eye } from 'lucide-react';
+import { Eye, Search, Package, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 import SparePartModal from './SparePartModal';
@@ -83,49 +83,97 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ }) => {
     window.open(`https://wa.me/51958840599?text=${message}`, '_blank');
   };
 
-  // Variantes de animación para las cards
+  // Variantes de animación mejoradas
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: (index: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: index * 0.1, duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] },
+      scale: 1,
+      transition: { 
+        delay: index * 0.08, 
+        duration: 0.6, 
+        ease: [0.43, 0.13, 0.23, 0.96] 
+      },
     }),
     hover: {
-      scale: 1.05,
-      boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
-      transition: { duration: 0.3, ease: 'easeOut' },
+      scale: 1.03,
+      y: -8,
+      boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+      transition: { duration: 0.4, ease: 'easeOut' },
     },
   };
 
-  if (loading) return <div className="text-center py-10 text-tractor-600">Cargando repuestos...</div>;
-  if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20">
+        <div className="animate-spin rounded-full h-16 w-16 border-4 border-tractor-200 border-t-machinery-200 mb-4"></div>
+        <p className="text-tractor-600 text-lg font-medium">Cargando repuestos de calidad...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-20">
+        <Package className="h-16 w-16 text-red-400 mx-auto mb-4" />
+        <p className="text-red-500 text-lg font-medium">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <>
-      <div className="mb-8">
+      {/* Barra de búsqueda mejorada */}
+      <motion.div 
+        className="mb-12"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="relative w-full max-w-2xl mx-auto">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-tractor-400" />
+          </div>
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Busca un repuesto por nombre..."
-            className="w-full px-4 py-2 pl-10 text-tractor-600 bg-tractor-50 border border-tractor-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-tractor-600 focus:border-transparent transition-all duration-300 placeholder-tractor-400 text-sm md:text-base"
+            placeholder="Busca repuestos por nombre o descripción..."
+            className="w-full pl-12 pr-4 py-4 text-tractor-700 bg-white border-2 border-tractor-200 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-tractor-200/50 focus:border-tractor-400 transition-all duration-300 placeholder-tractor-400 text-base font-medium"
           />
-          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tractor-600">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1112 5.5a7.5 7.5 0 014.65 13.65z"></path>
-            </svg>
-          </span>
+          <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
+            <div className="bg-tractor-100 text-tractor-600 px-3 py-1 rounded-lg text-sm font-medium">
+              {filteredSpareParts.length} repuestos
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-6 lg:px-8">
+      {/* Grid de repuestos mejorado */}
+      <motion.div 
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-4 md:px-6 lg:px-8"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         {filteredSpareParts.length > 0 ? (
           filteredSpareParts.map((sparePart, index) => (
             <motion.div
               key={sparePart.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300"
+              className="group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:border-tractor-200 transition-all duration-500"
               custom={index}
               variants={cardVariants}
               initial="hidden"
@@ -133,40 +181,82 @@ const SparePartsGallery: React.FC<SparePartsGalleryProps> = ({ }) => {
               whileHover="hover"
               viewport={{ once: true }}
             >
-              <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-square">
+              {/* Imagen del repuesto mejorada */}
+              <div className="relative w-full aspect-square overflow-hidden bg-gray-100">
                 <img
-                  src={sparePart.image_url || 'https://via.placeholder.com/300'}
+                  src={sparePart.image_url || 'https://via.placeholder.com/400x400/f3f4f6/6b7280?text=Repuesto'}
                   alt={sparePart.name}
-                  className="w-full h-full object-contain bg-gray-100 p-2"
-                  onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/300')}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/400x400/f3f4f6/6b7280?text=Repuesto')}
                 />
-                <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button
-                    onClick={() => handleViewDetails(sparePart)}
-                    className="bg-white/90 text-tractor-600 px-4 py-2 rounded-lg font-semibold hover:bg-white transition-colors duration-300 shadow-md hover:shadow-lg flex items-center"
-                  >
-                    <Eye className="h-5 w-5 mr-2" /> Ver Detalles
-                  </button>
+                
+                {/* Overlay con acciones */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="absolute bottom-4 left-4 right-4 flex gap-2">
+                    <button
+                      onClick={() => handleViewDetails(sparePart)}
+                      className="flex-1 bg-white/95 backdrop-blur-sm text-tractor-700 px-4 py-2.5 rounded-xl font-semibold hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center text-sm"
+                    >
+                      <Eye className="h-4 w-4 mr-2" /> Ver Detalles
+                    </button>
+                  </div>
+                </div>
+
+                {/* Badge de calidad */}
+                <div className="absolute top-4 left-4">
+                  <div className="bg-machinery-200 text-tractor-700 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center">
+                    <Star className="h-3 w-3 mr-1 fill-current" />
+                    Calidad
+                  </div>
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">{sparePart.name}</h3>
-                <div className="bg-tractor-50 text-tractor-600 text-sm px-3 py-1 rounded-full inline-block mb-3">
-                  {sparePart.specifications[0]?.value || 'Sin especificaciones'}
+
+              {/* Contenido de la card mejorado */}
+              <div className="p-6">
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-tractor-600 transition-colors duration-300">
+                    {sparePart.name}
+                  </h3>
+                  
+                  {/* Especificación destacada */}
+                  <div className="bg-tractor-50 text-tractor-700 text-sm px-3 py-2 rounded-lg inline-flex items-center font-medium border border-tractor-100">
+                    <Package className="h-4 w-4 mr-2" />
+                    {sparePart.specifications[0]?.value || 'Repuesto Original'}
+                  </div>
                 </div>
+
+                {/* Descripción */}
+                {sparePart.description && (
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    {sparePart.description}
+                  </p>
+                )}
+
+                {/* Botón de acción - Solo Cotizar */}
                 <button
                   onClick={() => handleWhatsAppClick(sparePart.name)}
-                  className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-300 shadow-md hover:shadow-lg flex items-center justify-center"
+                  className="w-full bg-green-500 text-white px-4 py-3 rounded-xl hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center font-semibold text-sm group/btn"
                 >
-                  <FaWhatsapp className="h-5 w-5 mr-2" /> Cotizar
+                  <FaWhatsapp className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform" />
+                  Cotizar
                 </button>
               </div>
             </motion.div>
           ))
         ) : (
-          <p className="text-center text-tractor-700 col-span-full">No se encontraron repuestos.</p>
+          <motion.div 
+            className="col-span-full text-center py-20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Package className="h-16 w-16 text-tractor-300 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-tractor-600 mb-2">No se encontraron repuestos</h3>
+            <p className="text-tractor-500">Intenta con otros términos de búsqueda</p>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
+
       {selectedSparePart && (
         <SparePartModal
           sparePart={selectedSparePart}

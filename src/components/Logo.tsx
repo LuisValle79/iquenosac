@@ -4,10 +4,10 @@ import logoImage from '../assets/Logo-El-Iqueño.png';
 interface LogoProps {
   height?: number;
   showText?: boolean;
-  variant?: 'navbar' | 'footer' | 'default';
+  variant?: 'navbar' | 'footer' | 'topbar' | 'default';
 }
 
-const Logo: React.FC<LogoProps> = ({ height = 48, showText = false, variant = 'default' }) => {
+const Logo: React.FC<LogoProps> = ({ height = 98, showText = false, variant = 'default' }) => {
   const getLogoStyles = () => {
     switch (variant) {
       case 'navbar':
@@ -18,6 +18,15 @@ const Logo: React.FC<LogoProps> = ({ height = 48, showText = false, variant = 'd
           textWrapper: "hidden sm:block transition-all duration-300 group-hover:translate-x-1",
           title: "text-xl font-bold text-white leading-tight drop-shadow-md group-hover:text-machinery-100 transition-colors duration-300",
           subtitle: "text-sm text-machinery-100 leading-tight drop-shadow-sm group-hover:text-white transition-colors duration-300"
+        };
+      case 'topbar':
+        return {
+          container: "flex items-center space-x-3 group cursor-pointer",
+          imageWrapper: "",
+          image: "object-contain filter drop-shadow-sm transition-all duration-300",
+          textWrapper: "hidden sm:block transition-all duration-300",
+          title: "text-lg font-bold text-tractor-200 leading-tight",
+          subtitle: "text-sm text-gray-600 leading-tight"
         };
       case 'footer':
         return {

@@ -37,6 +37,8 @@ function App() {
   const [chatbotError, setChatbotError] = useState<string | null>(null);
   const [alertMessage, setAlertMessage] = useState('');
   const [searchQuery] = useState('');
+  const [showTopBar, setShowTopBar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
   const scriptRef = useRef<HTMLScriptElement | null>(null);  // Ref para el script del chatbot
 
@@ -338,99 +340,193 @@ useEffect(() => {
     };
   }, [isMenuOpen]);
 
+  // Efecto para ocultar/mostrar la barra superior al hacer scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past 100px
+        setShowTopBar(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setShowTopBar(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
     <div className="min-h-screen bg-tractor-50 overflow-x-hidden">
-      {/* Navigation */}
-      <nav className="bg-tractor-200 text-white fixed w-full z-50 shadow-lg">
+      {/* Navigation - Diseño Invertido */}
+      <nav className="bg-white text-gray-800 fixed w-full z-50 shadow-2xl border-b border-gray-200">
+        {/* Barra superior verde - Solo información de contacto */}
+        <div className={`bg-tractor-200 text-white transition-all duration-500 ease-in-out overflow-hidden ${
+          showTopBar ? 'h-12 opacity-100' : 'h-0 opacity-0'
+        }`}>
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-12">
+              {/* Información de contacto centrada */}
+              <div className="hidden md:flex items-center justify-center w-full space-x-8">
+                <div className="flex items-center space-x-2 text-machinery-100 text-sm">
+                  <Mail className="h-4 w-4" />
+                  <span>eliquenosac.lili@gmail.com</span>
+                </div>
+                <div className="flex items-center space-x-2 text-machinery-100 text-sm">
+                  <MapPin className="h-4 w-4" />
+                  <span>Jr. Augusto B. Leguia n 523. Imperial Cañete Lima</span>
+                </div>
+                <div className="flex items-center space-x-2 text-white font-semibold text-sm">
+                  <Phone className="h-4 w-4" />
+                  <a href="tel:+51958840599" className="hover:text-machinery-200 transition-colors duration-300">
+                    +51 958 840 599
+                  </a>
+                </div>
+              </div>
+
+              {/* Solo teléfono en móvil */}
+              <div className="md:hidden flex items-center justify-center w-full space-x-2 text-white font-semibold text-sm">
+                <Phone className="h-4 w-4" />
+                <a href="tel:+51958840599" className="hover:text-machinery-200 transition-colors duration-300">
+                  +51 958 840 599
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Navbar principal blanco con todo el contenido */}
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="ml-[0px]">
-              <Logo height={50} showText={true} variant="navbar" />
-            </div>
-{/* Número con título encima */}
-<motion.div
-  className="flex flex-col items-start space-y-1 animate-pulse"
-  variants={phoneVariants}
-  initial="hidden"
-  animate="visible"
-  whileHover="hover"
->
-  <h3 className="text-sm text-machinery-200 font-semibold">Información de Contacto:</h3>
+            {/* Logo en el navbar blanco - Solo imagen */}
+            <motion.div 
+              className="flex items-center"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              <Logo height={50} showText={false} variant="topbar" />
+            </motion.div>
 
-  <div className="flex items-center space-x-2">
-    <Phone className="h-5 w-5 text-machinery-200" />
-    <a
-      href="tel:+51958840599"
-      className="text-machinery-50 font-semibold text-sm sm:text-base hover:text-machinery-200 transition duration-300"
-    >
-      +51 958 840 599
-    </a>
-  </div>
-</motion.div>
-
-            {/* Desktop Navigation and Search */}
-            <div className="hidden md:flex items-center space-x-3 mr-[-10px]">
-              <div className="flex items-center space-x-1">
-                {menuItems.map((item) => (
-                  <a
+            {/* Desktop Navigation - Moderno y Centrado */}
+            <div className="hidden lg:flex items-center justify-center flex-1 mx-16">
+              <div className="flex items-center space-x-2 bg-gray-50 rounded-2xl p-2 shadow-sm border border-gray-200">
+                {menuItems.map((item, index) => (
+                  <motion.a
                     key={item.href}
                     href={item.href}
-                    className="hover:text-machinery-200 px-3 py-2 rounded-md transition duration-300 hover:bg-tractor-300/50"
+                    className="relative px-6 py-3 text-sm font-semibold text-gray-600 hover:text-tractor-600 transition-all duration-300 rounded-xl group"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
                   >
-                    {item.label}
-                  </a>
+                    <span className="relative z-10">{item.label}</span>
+                    <div className="absolute inset-0 bg-white rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 shadow-md"></div>
+                    <div className="absolute inset-0 bg-tractor-200/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 delay-75"></div>
+                  </motion.a>
                 ))}
               </div>
             </div>
-            {/* Mobile menu button */}
+
+            {/* CTA Button - Moderno */}
+            <div className="hidden lg:flex items-center">
+              <motion.a
+                href="#contacto"
+                className="px-8 py-3 bg-tractor-200 text-white rounded-2xl font-bold hover:bg-tractor-300 hover:shadow-xl transform hover:scale-105 transition-all duration-300 shadow-lg border-2 border-transparent hover:border-tractor-100"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="flex items-center space-x-2">
+                  <span>Contáctanos</span>
+                  <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </motion.a>
+            </div>
+
+            {/* Mobile menu button - En blanco */}
             <motion.div
-              className="md:hidden"
+              className="lg:hidden"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              <button onClick={toggleMenu} className="p-2 rounded-full hover:bg-tractor-300/50 transition-colors duration-300">
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <button 
+                onClick={toggleMenu} 
+                className="relative p-3 bg-gray-100 rounded-xl hover:bg-gray-200 transition-all duration-300 group"
+              >
+                <div className="w-6 h-6 flex flex-col justify-center items-center">
+                  <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
+                  <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                  <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
+                </div>
               </button>
             </motion.div>
           </div>
         </div>
-        {/* Mobile Navigation */}
+
+        {/* Mobile Navigation - Diseño Simple como la imagen */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
+          <motion.div
+            className="lg:hidden fixed inset-0 bg-black/50 z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
             <motion.div
               ref={menuRef}
-              className="bg-tractor-200 h-full w-3/4 max-w-sm p-6 transform transition-transform duration-300"
+              className="bg-tractor-200 h-full w-80 max-w-sm shadow-2xl flex flex-col"
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
-              transition={{ duration: 0, ease: 'easeOut' }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
             >
-              <div className="flex justify-center items-center mb-8">
-                <Logo height={60} showText={true} variant="navbar" />
-              </div>
-              <div className="space-y-4">
-                {menuItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="block px-3 py-3 text-center hover:bg-tractor-300 rounded-lg transition-colors duration-300"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <div className="pt-6 border-t border-tractor-300">
-                  <a
-                    href="#contacto"
-                    className="block px-4 py-3 bg-machinery-200 text-tractor-400 rounded-lg text-center font-semibold hover:bg-machinery-300 transition duration-100"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Contáctanos
-                  </a>
+              {/* Logo en caja blanca */}
+              <div className="p-6 flex justify-center">
+                <div className="bg-white rounded-lg p-4 shadow-lg">
+                  <Logo height={60} showText={true} variant="topbar" />
                 </div>
               </div>
+
+              {/* Menu Items - Centrados y simples */}
+              <div className="flex-1 px-6 py-4 space-y-6 flex flex-col items-center justify-center">
+                {menuItems.map((item, index) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    className="text-white text-xl font-medium hover:text-machinery-200 transition-colors duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Botón Contáctanos - Dentro del contenedor */}
+              <div className="p-6">
+                <a
+                  href="#contacto"
+                  className="block w-full px-6 py-4 bg-machinery-200 text-tractor-700 rounded-2xl text-center font-bold text-lg hover:bg-machinery-300 transition-all duration-300 shadow-lg"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Contáctanos
+                </a>
+              </div>
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </nav>
       {/* Hero Section */}
