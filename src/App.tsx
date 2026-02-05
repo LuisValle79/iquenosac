@@ -414,12 +414,12 @@ useEffect(() => {
 
             {/* Desktop Navigation - Moderno y Centrado */}
             <div className="hidden lg:flex items-center justify-center flex-1 mx-16">
-              <div className="flex items-center space-x-2 bg-gray-50 rounded-2xl p-2 shadow-sm border border-gray-200">
+              <div className="flex items-center space-x-4">
                 {menuItems.map((item, index) => (
                   <motion.a
                     key={item.href}
                     href={item.href}
-                    className="relative px-6 py-3 text-sm font-semibold text-gray-600 hover:text-tractor-600 transition-all duration-300 rounded-xl group"
+                    className="relative px-6 py-3 text-sm font-semibold text-gray-600 hover:text-[#2d5a96] transition-all duration-300 rounded-xl border-2 border-transparent hover:border-green-500 hover:bg-green-50/50"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -437,8 +437,7 @@ useEffect(() => {
             <div className="hidden lg:flex items-center">
               <motion.a
                 href="#contacto"
-                className="px-8 py-3 bg-tractor-200 text-white rounded-2xl font-bold hover:bg-tractor-300 hover:shadow-xl transform hover:scale-105 transition-all duration-300 shadow-lg border-2 border-transparent hover:border-tractor-100"
-                initial={{ opacity: 0, scale: 0.8 }}
+                className="px-8 py-3 bg-tractor-200 text-white rounded-2xl font-bold hover:bg-tractor-300 hover:shadow-xl transform hover:scale-105 transition-all duration-300 shadow-lg border-2 border-transparent hover:border-tractor-100"                initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
                 whileHover={{ y: -2 }}
