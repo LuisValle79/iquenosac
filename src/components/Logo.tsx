@@ -22,7 +22,7 @@ const Logo: React.FC<LogoProps> = ({ height = 98, showText = false, variant = 'd
       case 'topbar':
         return {
           container: "flex items-center space-x-3 group cursor-pointer",
-          imageWrapper: "",
+          imageWrapper: "flex-shrink-0",
           image: "object-contain filter drop-shadow-sm transition-all duration-300",
           textWrapper: "hidden sm:block transition-all duration-300",
           title: "text-lg font-bold text-tractor-200 leading-tight",
@@ -40,7 +40,7 @@ const Logo: React.FC<LogoProps> = ({ height = 98, showText = false, variant = 'd
       default:
         return {
           container: "flex items-center",
-          imageWrapper: "",
+          imageWrapper: "flex-shrink-0",
           image: "object-contain",
           textWrapper: "ml-3",
           title: "text-lg font-bold leading-tight",
@@ -57,8 +57,9 @@ const Logo: React.FC<LogoProps> = ({ height = 98, showText = false, variant = 'd
         <img 
           src={logoImage}
           alt="El Iqueño SAC - Implementos Agrícolas"
-          style={{ height: `${height}px` }}
+          style={{ height: `${height}px`, width: 'auto' }}
           className={styles.image}
+          loading="eager"
         />
       </div>
       {showText && (

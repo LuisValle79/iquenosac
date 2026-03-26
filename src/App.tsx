@@ -297,10 +297,7 @@ function App() {
 
 // SOLO bloquear clic derecho, F12 y Ctrl+U - SIN otros event listeners
 useEffect(() => {
-  // Bloquear clic derecho
-  const disableRightClick = (e: MouseEvent) => {
-    e.preventDefault();
-  };
+
 
   // Bloquear F12 y Ctrl+U
   const disableKeys = (e: KeyboardEvent) => {
@@ -313,12 +310,12 @@ useEffect(() => {
   };
 
   // Solo eventos necesarios
-  document.addEventListener("contextmenu", disableRightClick);
+
   document.addEventListener("keydown", disableKeys);
 
   // Cleanup
   return () => {
-    document.removeEventListener("contextmenu", disableRightClick);
+
     document.removeEventListener("keydown", disableKeys);
   };
 }, []);
