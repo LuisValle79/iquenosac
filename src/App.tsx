@@ -410,7 +410,7 @@ useEffect(() => {
 
             {/* Desktop Navigation - Moderno y Centrado */}
             <div className="hidden lg:flex items-center justify-center flex-1 mx-16">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center justify-start space-x-0 ">
                 {menuItems.map((item, index) => (
                   <motion.a
                     key={item.href}
