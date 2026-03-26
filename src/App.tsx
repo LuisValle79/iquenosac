@@ -236,7 +236,6 @@ function App() {
     { href: '#videos', label: 'Videos' },
     { href: '#testimonios', label: 'Testimonios' },
     { href: '#asesores', label: 'Asesores' },
-    { href: '#contacto', label: 'Contacto' },
   ];
 
   // Variantes de animación para secciones (entrada desde lados alternados)
