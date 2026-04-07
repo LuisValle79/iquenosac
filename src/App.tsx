@@ -12,6 +12,7 @@ import Map from './components/Map';
 import Clients from './components/Clients';
 import Logo from './components/Logo';
 import HeroCarousel from './components/HeroCarousel';
+
 import image1 from './assets/portada1.jpg';
 import image2 from './assets/portada2.jpg';
 import image3 from './assets/portada3.jpg';
@@ -39,8 +40,11 @@ function App() {
   const [searchQuery] = useState('');
   const [showTopBar, setShowTopBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showPromoModal, setShowPromoModal] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const scriptRef = useRef<HTMLScriptElement | null>(null);  // Ref para el script del chatbot
+
+
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -358,6 +362,8 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-tractor-50 overflow-x-hidden">
+
+      
       {/* Navigation - Diseño Invertido */}
       <nav className="bg-white text-gray-800 fixed w-full z-50 shadow-2xl border-b border-gray-200">
         {/* Barra superior verde - Solo información de contacto */}
