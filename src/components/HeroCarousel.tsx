@@ -93,7 +93,7 @@ const HeroCarousel: React.FC = () => {
                 <ChevronRight className="ml-2 h-4 w-4" />
               </a>
               <a 
-                href="https://drive.google.com/drive/folders/1gcOQw4B4AKc3sptryrz_swGacyfTkvnP/preview?usp=sharing"
+                href="/catalogoactual.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-machinery-200 text-tractor-400 px-6 py-3 rounded-lg font-semibold hover:bg-machinery-300 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base hover:scale-105"
