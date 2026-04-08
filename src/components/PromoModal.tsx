@@ -216,10 +216,23 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
                     </div>
                   </motion.div>
 
-                  {/* Banner promocional animado - Debajo de la imagen */}
+                  {/* Validity Badge */}
                   <motion.div
-                    className="absolute bottom-12 left-0 right-0 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-gray-900 py-2 px-3 shadow-lg overflow-hidden"
-                    initial={{ y: 100, opacity: 0 }}
+                    className="absolute bottom-14 left-3 md:bottom-16 md:left-4 bg-white/95 backdrop-blur-sm px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg shadow-lg"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <div className="flex items-center space-x-1 md:space-x-1.5 text-xs md:text-sm">
+                      <Clock className="w-3 h-3 md:w-3.5 md:h-3.5 text-tractor-200" />
+                      <span className="text-gray-700 font-semibold">Válido: {currentPromo.validUntil}</span>
+                    </div>
+                  </motion.div>
+
+                  {/* Banner promocional animado - Debajo de "Válido hasta" */}
+                  <motion.div
+                    className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-gray-900 py-1.5 px-2.5 md:py-2 md:px-3 rounded-lg shadow-lg overflow-hidden"
+                    initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6, type: "spring" }}
                   >
@@ -235,14 +248,14 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
                         repeatDelay: 1
                       }}
                     />
-                    <div className="relative flex items-center justify-center space-x-2">
+                    <div className="relative flex items-center justify-center space-x-1.5 md:space-x-2">
                       <motion.div
                         animate={{ rotate: [0, 360] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                       >
-                        <Tag className="w-4 h-4 md:w-5 md:h-5" />
+                        <Tag className="w-3 h-3 md:w-4 md:h-4" />
                       </motion.div>
-                      <span className="text-xs md:text-sm font-black uppercase tracking-wider">
+                      <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">
                         ¡Oferta por tiempo limitado!
                       </span>
                       <motion.div
@@ -251,19 +264,6 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
                       >
                         ⚡
                       </motion.div>
-                    </div>
-                  </motion.div>
-
-                  {/* Validity Badge */}
-                  <motion.div
-                    className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-white/95 backdrop-blur-sm px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg shadow-lg"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    <div className="flex items-center space-x-1 md:space-x-1.5 text-xs md:text-sm">
-                      <Clock className="w-3 h-3 md:w-3.5 md:h-3.5 text-tractor-200" />
-                      <span className="text-gray-700 font-semibold">Válido: {currentPromo.validUntil}</span>
                     </div>
                   </motion.div>
                 </div>
