@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Tag, Clock, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
@@ -31,7 +31,6 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     fetchActivePromos();
@@ -39,19 +38,16 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
 
   useEffect(() => {
     if (promos.length > 0) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 800);
-      return () => clearTimeout(timer);
+      // Mostrar inmediatamente sin delay
+      setIsVisible(true);
     }
   }, [promos]);
 
   // Auto-slide dinámico: más tiempo para videos, menos para imágenes
   useEffect(() => {
     if (promos.length > 1) {
-      // Determinar el tiempo según el tipo de media actual
       const currentPromo = promos[currentIndex];
-      const slideTime = currentPromo.mediaType === 'video' ? 25000 : 6000; // 15s para video, 5s para imagen
+      const slideTime = currentPromo.mediaType === 'video' ? 26000 : 5000;
       
       const interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % promos.length);
@@ -59,7 +55,7 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
       
       return () => clearInterval(interval);
     }
-  }, [promos.length, currentIndex, promos]); // Agregamos currentIndex y promos como dependencias
+  }, [promos.length, currentIndex, promos]);
 
   const fetchActivePromos = async () => {
     try {
@@ -141,11 +137,11 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
 
           {/* Modal Container */}
           <motion.div
-            className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[85vh] overflow-y-auto"
-            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+            className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] md:max-h-[95vh]"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.8, opacity: 0, y: 50 }}
-            transition={{ type: "spring", duration: 0.5 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ duration: 0.2 }}
           >
             {/* Close Button */}
             <button
@@ -172,43 +168,46 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.3 }}
-                className="grid md:grid-cols-2 gap-0"
+                className="relative md:grid md:grid-cols-2 gap-0 h-full"
               >
-                {/* Left Side - Image or Video */}
-                
-                <div className="relative h-56 sm:h-64 md:h-auto bg-white overflow-hidden flex flex-col items-center justify-center p-4 md:p-5">
-                  {currentPromo.mediaType === 'video' ? (
-                    <motion.video
-                      src={currentPromo.image}
-                      className="w-full h-full object-contain"
-                      initial={{ scale: 1.2 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.8 }}
-                      controls
-                      autoPlay
-                      muted={isMuted}
-                      onClick={() => setIsMuted(false)}
-                      loop
-                      playsInline
-
-                    />
-                  ) : (
-                    <motion.img
-                      src={currentPromo.image}
-                      alt={currentPromo.title}
-                      className="w-full h-full object-contain"
-                      initial={{ scale: 1.2 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.8 }}
-                    />
-                  )}
-
-                  {/* Discount Badge - Floating (PROMOCIÓN rojo) */}
+                {/* Left Side - Image or Video (Full screen en móvil) */}
+                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex flex-col items-center justify-center md:p-5 w-full h-[60vh] md:h-auto">
+                  {/* Contenedor con aspect-ratio consistente */}
+                  <div className="w-full h-full overflow-hidden flex items-center justify-center">
+                    {/* Overlay sutil para móvil */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20 md:hidden pointer-events-none z-10"></div>
+                    
+                    {currentPromo.mediaType === 'video' ? (
+                      <motion.video
+                        src={currentPromo.image}
+                        className="w-full h-full object-contain bg-black md:drop-shadow-2xl"
+                        initial={{ scale: 1.05 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.4 }}
+                        controls
+                        autoPlay
+                        muted={isMuted}
+                        onClick={() => setIsMuted(false)}
+                        loop
+                        playsInline
+                        preload="metadata"
+                      />
+                    ) : (
+                      <motion.img
+                        src={currentPromo.image}
+                        alt={currentPromo.title}
+                        className="w-full h-full object-contain md:drop-shadow-2xl"
+                        initial={{ scale: 1.05 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    )}
+                  </div>
                   <motion.div
-                    className="absolute top-4 left-3 md:top-6 md:left-4 bg-red-500 text-white px-2.5 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl shadow-2xl"
+                    className="absolute top-4 left-3 md:top-6 md:left-4 bg-red-500 text-white px-2.5 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl shadow-2xl z-20 backdrop-blur-sm"
                     initial={{ rotate: -12, scale: 0 }}
                     animate={{ rotate: -12, scale: 1 }}
-                    transition={{ delay: 0.3, type: "spring" }}
+                    transition={{ delay: 0.1, type: "spring", duration: 0.3 }}
                   >
                     <div className="flex items-center space-x-1 md:space-x-1.5">
                       <Tag className="w-3.5 h-3.5 md:w-4 md:h-4" />
@@ -218,10 +217,10 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
 
                   {/* Validity Badge */}
                   <motion.div
-                    className="absolute bottom-14 left-3 md:bottom-16 md:left-4 bg-white/95 backdrop-blur-sm px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg shadow-lg"
+                    className="absolute bottom-14 left-3 md:bottom-16 md:left-4 bg-white/95 backdrop-blur-sm px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg shadow-lg z-20"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
                   >
                     <div className="flex items-center space-x-1 md:space-x-1.5 text-xs md:text-sm">
                       <Clock className="w-3 h-3 md:w-3.5 md:h-3.5 text-tractor-200" />
@@ -231,10 +230,10 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
 
                   {/* Banner promocional animado - Debajo de "Válido hasta" */}
                   <motion.div
-                    className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-gray-900 py-1.5 px-2.5 md:py-2 md:px-3 rounded-lg shadow-lg overflow-hidden"
+                    className="hidden md:block absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-gray-900 py-1.5 px-2.5 md:py-2 md:px-3 rounded-lg shadow-lg overflow-hidden z-20"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.6, type: "spring" }}
+                    transition={{ delay: 0.3, duration: 0.3 }}
                   >
                     {/* Efecto de brillo animado */}
                     <motion.div
@@ -266,10 +265,24 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
                       </motion.div>
                     </div>
                   </motion.div>
+
+                  {/* Botón WhatsApp flotante (Solo móvil) - Posición abajo izquierda */}
+                  <motion.button
+                    onClick={handleWhatsAppClick}
+                    className="md:hidden absolute bottom-3 left-3 bg-tractor-200 text-white px-4 py-2 rounded-full font-bold text-sm shadow-2xl flex items-center space-x-1.5 hover:bg-tractor-300 active:scale-95 transition-all duration-200 z-20 backdrop-blur-sm"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.3 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Comprar</span>
+                  </motion.button>
                 </div>
 
-                {/* Right Side - Content */}
-                <div className="p-6 sm:p-7 md:p-8 flex flex-col justify-between">
+                {/* Right Side - Content (Oculto en móvil) */}
+                <div className="hidden md:flex p-6 sm:p-7 md:p-8 flex-col justify-between">
                   {/* Badge */}
                   <motion.div
                     initial={{ x: -20, opacity: 0 }}
@@ -332,14 +345,14 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose }) => {
               <>
                 <button
                   onClick={goToPrevious}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110"
+                  className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 md:bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110"
                   aria-label="Anterior"
                 >
                   <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
                 </button>
                 <button
                   onClick={goToNext}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110"
+                  className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 md:bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110"
                   aria-label="Siguiente"
                 >
                   <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
