@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Eye } from 'lucide-react';
+import { Eye, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 import ProductModal from './ProductModal';
 import { supabase } from '../../lib/supabaseClient';
@@ -101,23 +102,31 @@ const MachineGallery: React.FC<MachineGalleryProps> = ({ searchQuery }) => {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
-      {/* Buscador en tiempo real */}
-      <div className="mb-8">
+      {/* Barra de búsqueda mejorada */}
+      <motion.div 
+        className="mb-12"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="relative w-full max-w-2xl mx-auto">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-tractor-400" />
+          </div>
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Busca un producto por nombre..."
-            className="w-full px-4 py-2 pl-10 text-tractor-600 bg-tractor-50 border border-tractor-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-tractor-600 focus:border-transparent transition-all duration-300 placeholder-tractor-400 text-sm md:text-base"
+            placeholder="Busca productos por nombre o descripción..."
+            className="w-full pl-12 pr-4 py-4 text-tractor-700 bg-white border-2 border-tractor-200 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-tractor-200/50 focus:border-tractor-400 transition-all duration-300 placeholder-tractor-400 text-base font-medium"
           />
-          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tractor-600">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1112 5.5a7.5 7.5 0 014.65 13.65z"></path>
-            </svg>
-          </span>
+          <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
+            <div className="bg-tractor-100 text-tractor-600 px-3 py-1 rounded-lg text-sm font-medium">
+              {filteredProducts.length} productos
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
         {filteredProducts.length > 0 ? (
