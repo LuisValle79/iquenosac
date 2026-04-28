@@ -4,7 +4,7 @@ import { FaWhatsapp, FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-
 
 import portada1 from '../assets/portada1.jpg';
 import portada2 from '../assets/portada2.jpg';
-import portada3 from '../assets/portada3.jpg';
+import portada3 from '../assets/papas_cajaimportada.png';
 import portada4 from "../assets/Abonadora-Fertilizadora-Hidraulica.jpg";
 
 const images = [
